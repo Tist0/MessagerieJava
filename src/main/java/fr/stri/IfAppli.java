@@ -33,8 +33,8 @@ public class IfAppli extends javax.swing.JFrame {
         //jPanel5.setBackground(Color.WHITE);
         jPanel6.setBackground(Color.WHITE);
         taMsgSalon.setBackground(Color.WHITE);
-        getContentPane().setBackground(Color.WHITE);
         jPanel7.setBackground(bleuAzur);
+       
     }
 
     /**
@@ -126,7 +126,11 @@ public class IfAppli extends javax.swing.JFrame {
                 .addGap(181, 181, 181))
         );
 
-        jInternalFrame1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jInternalFrame1.setBackground(new java.awt.Color(0, 0, 0));
+        jInternalFrame1.setBorder(null);
+        jInternalFrame1.setForeground(new java.awt.Color(255, 255, 255));
+        jInternalFrame1.setTitle("Projet Super Panda");
+        jInternalFrame1.setToolTipText("");
         jInternalFrame1.setVisible(true);
 
         tfSendMessage.addActionListener(new java.awt.event.ActionListener() {
@@ -165,8 +169,8 @@ public class IfAppli extends javax.swing.JFrame {
         jInternalFrame1Layout.setVerticalGroup(
             jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jInternalFrame1Layout.createSequentialGroup()
-                .addContainerGap(14, Short.MAX_VALUE)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 363, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap()
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 374, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(tfSendMessage, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -226,6 +230,37 @@ public class IfAppli extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void tfSendMessageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfSendMessageActionPerformed
+        String text = tfSendMessage.getText();
+
+        Calendar cal = Calendar.getInstance();
+        int minute = cal.get(Calendar.MINUTE);
+        int hour =(Calendar.HOUR_OF_DAY);
+        int day = cal.get(Calendar.DAY_OF_MONTH);
+        int month = cal.get(Calendar.MONTH);
+        int year = cal.get(Calendar.YEAR);
+        String date = (day+"/"+month+"/"+year);
+
+        //En cours: condition pour afficher explicitement que c'est une nouvelle journée depuis le dernier message
+        //BDD: Besoin d'un champs dateDernierMessage pour la table salon
+        /*if (cal.get(Calendar.DAY_OF_YEAR) != dateDernierMessage)
+        {
+            jTextArea1.append(date);
+        }*/
+
+        taMsgSalon.append(hour+ ":" +minute+"   "+text+"\n");
+
+        tfSendMessage.selectAll();
+
+        tfSendMessage.setCaretPosition(tfSendMessage.getDocument().getLength());
+        tfSendMessage.getText();
+        tfSendMessage.setText("");
+    }//GEN-LAST:event_tfSendMessageActionPerformed
+
+    private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox2ActionPerformed
+
     private void btnAjouterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAjouterActionPerformed
         Personne p = new Personne("Nom","Prenom");
         model.add(p);
@@ -234,38 +269,6 @@ public class IfAppli extends javax.swing.JFrame {
     private void lstPersonnesComponentAdded(java.awt.event.ContainerEvent evt) {//GEN-FIRST:event_lstPersonnesComponentAdded
         // TODO add your handling code here:
     }//GEN-LAST:event_lstPersonnesComponentAdded
-
-    private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox2ActionPerformed
-
-    private void tfSendMessageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfSendMessageActionPerformed
-        String text = tfSendMessage.getText();
-        
-        Calendar cal = Calendar.getInstance();
-        int minute = cal.get(Calendar.MINUTE);
-        int hour =(Calendar.HOUR_OF_DAY);
-        int day = cal.get(Calendar.DAY_OF_MONTH);
-        int month = cal.get(Calendar.MONTH);
-        int year = cal.get(Calendar.YEAR);
-        String date = (day+"/"+month+"/"+year);
-        
-        //En cours: condition pour afficher explicitement que c'est une nouvelle journée depuis le dernier message
-        //BDD: Besoin d'un champs dateDernierMessage pour la table salon
-        /*if (cal.get(Calendar.DAY_OF_YEAR) != dateDernierMessage)
-        {
-            jTextArea1.append(date);
-        }*/
-        
-        
-        taMsgSalon.append(hour+ ":" +minute+"   "+text+"\n");
-        
-        tfSendMessage.selectAll();
-
-        tfSendMessage.setCaretPosition(tfSendMessage.getDocument().getLength());
-        tfSendMessage.getText();
-        tfSendMessage.setText("");
-    }//GEN-LAST:event_tfSendMessageActionPerformed
 
     /**
      * @param args the command line arguments
