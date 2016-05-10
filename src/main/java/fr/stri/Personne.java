@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package Messagerie;
+package fr.stri;
 
 /**
  *
@@ -11,6 +11,7 @@ package Messagerie;
 class Personne {
     private String nom;
     private String prenom;
+    
 
     public Personne(String nom, String prenom) {
         this.nom = nom;
