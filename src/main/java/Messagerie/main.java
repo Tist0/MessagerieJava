@@ -10,5 +10,9 @@ package Messagerie;
  * @author jerome
  */
 public class main {
+    public static void main (String[] Args)
+    {
+    
+    }
     
 }
