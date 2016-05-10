@@ -4,7 +4,9 @@
  */
 package fr.stri;
 
+import java.awt.Color;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 /**
  *
@@ -19,7 +21,20 @@ public class IfAppli extends javax.swing.JFrame {
      */
     public IfAppli() {
         model = new MyAbstractList();
-        initComponents();        
+        initComponents(); 
+        Color bleuAzur = new Color (245, 250, 250);
+     
+        jInternalFrame1.setBorder(javax.swing.BorderFactory.createEtchedBorder(java.awt.Color.white, null));
+        jInternalFrame1.getContentPane().setBackground(Color.WHITE);
+        jPanel1.setBackground(bleuAzur);
+        //.setBackground(Color.WHITE);
+        jMenuBar1.setBackground(Color.WHITE);
+        //jPanel4.setBackground(Color.WHITE);
+        //jPanel5.setBackground(Color.WHITE);
+        jPanel6.setBackground(Color.WHITE);
+        taMsgSalon.setBackground(Color.WHITE);
+        getContentPane().setBackground(Color.WHITE);
+        jPanel7.setBackground(bleuAzur);
     }
 
     /**
@@ -104,7 +119,7 @@ public class IfAppli extends javax.swing.JFrame {
                 .addComponent(lblPseudo)
                 .addGap(18, 18, 18)
                 .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
                 .addComponent(btnAjouter)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 482, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -113,6 +128,13 @@ public class IfAppli extends javax.swing.JFrame {
 
         jInternalFrame1.setVisible(true);
 
+        tfSendMessage.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tfSendMessageActionPerformed(evt);
+            }
+        });
+
+        taMsgSalon.setEditable(false);
         taMsgSalon.setColumns(20);
         taMsgSalon.setRows(5);
         jScrollPane2.setViewportView(taMsgSalon);
@@ -142,7 +164,7 @@ public class IfAppli extends javax.swing.JFrame {
         jInternalFrame1Layout.setVerticalGroup(
             jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jInternalFrame1Layout.createSequentialGroup()
-                .addContainerGap(16, Short.MAX_VALUE)
+                .addContainerGap(32, Short.MAX_VALUE)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 363, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(tfSendMessage, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -166,7 +188,7 @@ public class IfAppli extends javax.swing.JFrame {
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(71, Short.MAX_VALUE)
                 .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jInternalFrame1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -214,6 +236,34 @@ public class IfAppli extends javax.swing.JFrame {
     private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBox2ActionPerformed
+
+    private void tfSendMessageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfSendMessageActionPerformed
+        String text = tfSendMessage.getText();
+        
+        Calendar cal = Calendar.getInstance();
+        int minute = cal.get(Calendar.MINUTE);
+        int hour =(Calendar.HOUR_OF_DAY);
+        int day = cal.get(Calendar.DAY_OF_MONTH);
+        int month = cal.get(Calendar.MONTH);
+        int year = cal.get(Calendar.YEAR);
+        String date = (day+"/"+month+"/"+year);
+        
+        //En cours: condition pour afficher explicitement que c'est une nouvelle journée depuis le dernier message
+        //BDD: Besoin d'un champs dateDernierMessage pour la table salon
+        /*if (cal.get(Calendar.DAY_OF_YEAR) != dateDernierMessage)
+        {
+            jTextArea1.append(date);
+        }*/
+        
+        
+        taMsgSalon.append(hour+ ":" +minute+"   "+text+"\n");
+        
+        tfSendMessage.selectAll();
+
+        tfSendMessage.setCaretPosition(tfSendMessage.getDocument().getLength());
+        tfSendMessage.getText();
+        tfSendMessage.setText("");
+    }//GEN-LAST:event_tfSendMessageActionPerformed
 
     /**
      * @param args the command line arguments
