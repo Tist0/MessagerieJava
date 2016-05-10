@@ -5,8 +5,11 @@
 package fr.stri;
 
 import java.awt.Color;
+import java.awt.Component;
 import java.util.ArrayList;
 import java.util.Calendar;
+import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -15,6 +18,7 @@ import java.util.Calendar;
 public class IfAppli extends javax.swing.JFrame {
 
     MyAbstractList model;
+    private Component frame;
 
     /**
      * Creates new form jframe
@@ -51,7 +55,6 @@ public class IfAppli extends javax.swing.JFrame {
         jPanel7 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         lstPersonnes = new javax.swing.JList();
-        btnAjouter = new javax.swing.JButton();
         lblPseudo = new javax.swing.JLabel();
         jComboBox2 = new javax.swing.JComboBox();
         jInternalFrame1 = new javax.swing.JInternalFrame();
@@ -59,10 +62,11 @@ public class IfAppli extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         taMsgSalon = new javax.swing.JTextArea();
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        jMenu3 = new javax.swing.JMenu();
-        jMenu2 = new javax.swing.JMenu();
+        mnuDescription = new javax.swing.JMenu();
+        mnuMembres = new javax.swing.JMenu();
+        mnuGestion = new javax.swing.JMenu();
         jComboBox1 = new javax.swing.JComboBox();
+        btnActualiser = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -74,13 +78,6 @@ public class IfAppli extends javax.swing.JFrame {
             }
         });
         jScrollPane1.setViewportView(lstPersonnes);
-
-        btnAjouter.setText("Ajouter");
-        btnAjouter.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAjouterActionPerformed(evt);
-            }
-        });
 
         lblPseudo.setText("jLabel1");
 
@@ -102,15 +99,12 @@ public class IfAppli extends javax.swing.JFrame {
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel7Layout.createSequentialGroup()
-                        .addGap(53, 53, 53)
-                        .addComponent(btnAjouter))
-                    .addGroup(jPanel7Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel7Layout.createSequentialGroup()
                         .addGap(40, 40, 40)
                         .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(11, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -119,9 +113,7 @@ public class IfAppli extends javax.swing.JFrame {
                 .addComponent(lblPseudo)
                 .addGap(18, 18, 18)
                 .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnAjouter)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 490, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(181, 181, 181))
         );
@@ -144,14 +136,29 @@ public class IfAppli extends javax.swing.JFrame {
         taMsgSalon.setRows(5);
         jScrollPane2.setViewportView(taMsgSalon);
 
-        jMenu1.setText("Description");
-        jMenuBar1.add(jMenu1);
+        mnuDescription.setText("Description");
+        mnuDescription.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                mnuDescriptionMouseClicked(evt);
+            }
+        });
+        mnuDescription.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnuDescriptionActionPerformed(evt);
+            }
+        });
+        jMenuBar1.add(mnuDescription);
 
-        jMenu3.setText("Membres connectés");
-        jMenuBar1.add(jMenu3);
+        mnuMembres.setText("Membres connectés");
+        jMenuBar1.add(mnuMembres);
 
-        jMenu2.setText("Gestion du salon");
-        jMenuBar1.add(jMenu2);
+        mnuGestion.setText("Gestion du salon");
+        mnuGestion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnuGestionActionPerformed(evt);
+            }
+        });
+        jMenuBar1.add(mnuGestion);
 
         jInternalFrame1.setJMenuBar(jMenuBar1);
 
@@ -178,6 +185,13 @@ public class IfAppli extends javax.swing.JFrame {
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
+        btnActualiser.setText("Actualiser");
+        btnActualiser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnActualiserActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
@@ -185,9 +199,11 @@ public class IfAppli extends javax.swing.JFrame {
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jInternalFrame1)
-                    .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jInternalFrame1)
+                        .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnActualiser))
                 .addGap(20, 20, 20))
         );
         jPanel6Layout.setVerticalGroup(
@@ -195,6 +211,8 @@ public class IfAppli extends javax.swing.JFrame {
             .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnActualiser)
+                .addGap(18, 18, 18)
                 .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jInternalFrame1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -261,14 +279,35 @@ public class IfAppli extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBox2ActionPerformed
 
-    private void btnAjouterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAjouterActionPerformed
+    private void btnActualiserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualiserActionPerformed
         Personne p = new Personne("Nom","Prenom");
         model.add(p);
-    }//GEN-LAST:event_btnAjouterActionPerformed
+        JMenuItem mi = new JMenuItem();
+
+// affectation du texte
+mi.setText("le texte");
+
+// l'item de menu est actif
+mi.setEnabled(true);
+// Ajout de l'item à un menu 
+mnuMembres.add(mi);
+    }//GEN-LAST:event_btnActualiserActionPerformed
 
     private void lstPersonnesComponentAdded(java.awt.event.ContainerEvent evt) {//GEN-FIRST:event_lstPersonnesComponentAdded
         // TODO add your handling code here:
     }//GEN-LAST:event_lstPersonnesComponentAdded
+
+    private void mnuGestionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuGestionActionPerformed
+        
+    }//GEN-LAST:event_mnuGestionActionPerformed
+
+    private void mnuDescriptionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuDescriptionActionPerformed
+       
+    }//GEN-LAST:event_mnuDescriptionActionPerformed
+
+    private void mnuDescriptionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mnuDescriptionMouseClicked
+        JOptionPane.showMessageDialog(taMsgSalon, "Description du salon : Les pandas ça sert à rien!");
+    }//GEN-LAST:event_mnuDescriptionMouseClicked
 
     /**
      * @param args the command line arguments
@@ -297,6 +336,8 @@ public class IfAppli extends javax.swing.JFrame {
         }
         //</editor-fold>
 
+               
+        
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -305,13 +346,10 @@ public class IfAppli extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAjouter;
+    private javax.swing.JButton btnActualiser;
     private javax.swing.JComboBox jComboBox1;
     private javax.swing.JComboBox jComboBox2;
     private javax.swing.JInternalFrame jInternalFrame1;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel6;
@@ -320,6 +358,9 @@ public class IfAppli extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel lblPseudo;
     private javax.swing.JList lstPersonnes;
+    private javax.swing.JMenu mnuDescription;
+    private javax.swing.JMenu mnuGestion;
+    private javax.swing.JMenu mnuMembres;
     private javax.swing.JTextArea taMsgSalon;
     private javax.swing.JTextField tfSendMessage;
     // End of variables declaration//GEN-END:variables

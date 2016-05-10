@@ -63,9 +63,12 @@
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="jPanel7" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="jInternalFrame1" max="32767" attributes="0"/>
-                          <Component id="jComboBox1" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="jInternalFrame1" max="32767" attributes="0"/>
+                              <Component id="jComboBox1" max="32767" attributes="0"/>
+                          </Group>
+                          <Component id="btnActualiser" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                   </Group>
@@ -76,6 +79,8 @@
                   <Component id="jPanel7" alignment="0" max="32767" attributes="0"/>
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace max="32767" attributes="0"/>
+                      <Component id="btnActualiser" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="jComboBox1" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jInternalFrame1" min="-2" max="-2" attributes="0"/>
@@ -98,10 +103,6 @@
                       <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace min="-2" pref="53" max="-2" attributes="0"/>
-                                  <Component id="btnAjouter" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="jScrollPane1" min="-2" pref="157" max="-2" attributes="0"/>
                               </Group>
@@ -110,7 +111,7 @@
                                   <Component id="jComboBox2" min="-2" pref="94" max="-2" attributes="0"/>
                               </Group>
                           </Group>
-                          <EmptySpace pref="11" max="32767" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -121,9 +122,7 @@
                           <Component id="lblPseudo" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="jComboBox2" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="32767" attributes="0"/>
-                          <Component id="btnAjouter" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
+                          <EmptySpace pref="19" max="32767" attributes="0"/>
                           <Component id="jScrollPane1" min="-2" pref="490" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="181" max="-2" attributes="0"/>
                       </Group>
@@ -150,14 +149,6 @@
                     </Component>
                   </SubComponents>
                 </Container>
-                <Component class="javax.swing.JButton" name="btnAjouter">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="Ajouter"/>
-                  </Properties>
-                  <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAjouterActionPerformed"/>
-                  </Events>
-                </Component>
                 <Component class="javax.swing.JLabel" name="lblPseudo">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="jLabel1"/>
@@ -243,20 +234,27 @@
                 </Container>
                 <Menu class="javax.swing.JMenuBar" name="jMenuBar1">
                   <SubComponents>
-                    <Menu class="javax.swing.JMenu" name="jMenu1">
+                    <Menu class="javax.swing.JMenu" name="mnuDescription">
                       <Properties>
                         <Property name="text" type="java.lang.String" value="Description"/>
                       </Properties>
+                      <Events>
+                        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="mnuDescriptionMouseClicked"/>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mnuDescriptionActionPerformed"/>
+                      </Events>
                     </Menu>
-                    <Menu class="javax.swing.JMenu" name="jMenu3">
+                    <Menu class="javax.swing.JMenu" name="mnuMembres">
                       <Properties>
                         <Property name="text" type="java.lang.String" value="Membres connect&#xe9;s"/>
                       </Properties>
                     </Menu>
-                    <Menu class="javax.swing.JMenu" name="jMenu2">
+                    <Menu class="javax.swing.JMenu" name="mnuGestion">
                       <Properties>
                         <Property name="text" type="java.lang.String" value="Gestion du salon"/>
                       </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mnuGestionActionPerformed"/>
+                      </Events>
                     </Menu>
                   </SubComponents>
                 </Menu>
@@ -273,6 +271,14 @@
                   </StringArray>
                 </Property>
               </Properties>
+            </Component>
+            <Component class="javax.swing.JButton" name="btnActualiser">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Actualiser"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnActualiserActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>
