@@ -14,7 +14,7 @@ import java.sql.SQLException;
  * @author jerome
  */
 public class ConnexionBDD {
-  public static void main(String[] args) {      
+  public void connexion() {      
     try {
       Class.forName("org.postgresql.Driver");
       System.out.println("Driver O.K.");
