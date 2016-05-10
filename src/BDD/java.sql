@@ -11,7 +11,7 @@ CREATE TABLE Statut(
 	Absent BOOL  NOT NULL ,
 	login  VARCHAR (25)  ,
 	CONSTRAINT prk_constraint_Statut PRIMARY KEY (Absent)
-)WITHOUT;
+);
 
 
 ------------------------------------------------------------
@@ -21,7 +21,7 @@ CREATE TABLE Users(
 	login VARCHAR (25) NOT NULL ,
 	mdp   VARCHAR (25)  ,
 	CONSTRAINT prk_constraint_Users PRIMARY KEY (login)
-)WITHOUT ;
+);
 
 
 ------------------------------------------------------------
@@ -35,7 +35,7 @@ CREATE TABLE Salon(
 	idAdmin   INT   ,
 	contenu   VARCHAR (250)  ,
 	CONSTRAINT prk_constraint_Salon PRIMARY KEY (idSalon)
-)WITHOUT ;
+);
 
 
 ------------------------------------------------------------
@@ -61,7 +61,7 @@ CREATE TABLE Admin(
 	idMessage INT   ,
 	idSalon   INT   ,
 	CONSTRAINT prk_constraint_Admin PRIMARY KEY (idAdmin)
-)WITHOUT ;
+) ;
 
 
 ------------------------------------------------------------
@@ -71,7 +71,7 @@ CREATE TABLE Acceder(
 	login   VARCHAR (25) NOT NULL ,
 	idSalon INT  NOT NULL ,
 	CONSTRAINT prk_constraint_Acceder PRIMARY KEY (login,idSalon)
-)WITHOUT ;
+);
 
 
 ------------------------------------------------------------
