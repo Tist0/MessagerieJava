@@ -126,7 +126,7 @@ public class IfAppli extends javax.swing.JFrame {
                 .addGap(181, 181, 181))
         );
 
-        jInternalFrame1.setBackground(new java.awt.Color(0, 0, 0));
+        jInternalFrame1.setBackground(new java.awt.Color(255, 255, 255));
         jInternalFrame1.setBorder(null);
         jInternalFrame1.setForeground(new java.awt.Color(255, 255, 255));
         jInternalFrame1.setTitle("Projet Super Panda");
@@ -188,7 +188,7 @@ public class IfAppli extends javax.swing.JFrame {
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jInternalFrame1)
                     .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+                .addGap(20, 20, 20))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
