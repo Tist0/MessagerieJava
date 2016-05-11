@@ -19,7 +19,7 @@ public class ConnexionBDD {
       Class.forName("org.postgresql.Driver");
       System.out.println("Driver O.K.");
 
-      String url = "jdbc:postgresql://localhost:5432/JAVA";
+      String url = "jdbc:postgresql://localhost:5432/java";
       String user = "postgres";
       String passwd = "stri";
 
