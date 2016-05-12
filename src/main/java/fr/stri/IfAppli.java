@@ -6,6 +6,8 @@ package fr.stri;
 
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Calendar;
 import javax.swing.JMenuItem;
@@ -24,9 +26,18 @@ public class IfAppli extends javax.swing.JFrame {
      * Creates new form jframe
      */
     public IfAppli() {
-        model = new MyAbstractList();
+        model = new MyAbstractList(); 
+        Personne p1 = new Personne("BUGE","Pascal");
+        Personne p2 = new Personne("BONOBO","Florian");
+        model.add(p1);
+        model.add(p2);
         initComponents(); 
         Color bleuAzur = new Color (245, 250, 250);
+        
+        /*****/
+         
+        
+        /*****/
      
         jInternalFrame1.setBorder(javax.swing.BorderFactory.createEtchedBorder(java.awt.Color.white, null));
         jInternalFrame1.getContentPane().setBackground(Color.WHITE);
@@ -37,9 +48,7 @@ public class IfAppli extends javax.swing.JFrame {
         //jPanel5.setBackground(Color.WHITE);
         jPanel6.setBackground(Color.WHITE);
         taMsgSalon.setBackground(Color.WHITE);
-        jPanel7.setBackground(bleuAzur);
-       
-      
+        jPanel7.setBackground(bleuAzur);             
     }
 
     /**
@@ -73,6 +82,11 @@ public class IfAppli extends javax.swing.JFrame {
         setResizable(false);
 
         lstPersonnes.setModel(model);
+        lstPersonnes.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lstPersonnesMouseClicked(evt);
+            }
+        });
         lstPersonnes.addContainerListener(new java.awt.event.ContainerAdapter() {
             public void componentAdded(java.awt.event.ContainerEvent evt) {
                 lstPersonnesComponentAdded(evt);
@@ -283,6 +297,7 @@ public class IfAppli extends javax.swing.JFrame {
     private void btnActualiserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualiserActionPerformed
         Personne p = new Personne("Nom","Prenom");
         model.add(p);
+        
         JMenuItem mi = new JMenuItem();
 
 // affectation du texte
@@ -309,6 +324,18 @@ mnuMembres.add(mi);
     private void mnuDescriptionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mnuDescriptionMouseClicked
         JOptionPane.showMessageDialog(taMsgSalon, "Description du salon : Les pandas ça sert à rien!");
     }//GEN-LAST:event_mnuDescriptionMouseClicked
+
+    private void lstPersonnesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lstPersonnesMouseClicked
+        String personSelect = (lstPersonnes.getSelectedValue().toString());
+
+        //jComboBox2.toString();
+        
+        if (evt.getClickCount() == 2 && !evt.isConsumed()) {
+                    evt.consume();
+                    System.out.println(personSelect);
+            }
+        
+    }//GEN-LAST:event_lstPersonnesMouseClicked
 
     /**
      * @param args the command line arguments
@@ -339,8 +366,11 @@ mnuMembres.add(mi);
         }
         //</editor-fold>
 
-               
+        /*--------------------------------------------------*/
         
+        
+                
+        /*----------------------------------------------------------*/
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {

@@ -4,9 +4,12 @@
  */
 package fr.stri;
 
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.AbstractListModel;
+import javax.swing.ListModel;
 
 /**
  *
@@ -31,5 +34,7 @@ public class MyAbstractList extends AbstractListModel<Personne> {
     void add(Personne p) {
         myList.add(p);
         this.fireContentsChanged(this, 0, myList.size());
-    }
+    } 
+    
+ 
 }
