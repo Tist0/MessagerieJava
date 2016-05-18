@@ -15,23 +15,20 @@ import java.sql.SQLException;
  */
 public class ConnexionBDD {//CTRL + SHIFT + O pour générer les imports
 
-  public static void main(String[] args) {      
-    try {
-      Class.forName("org.postgresql.Driver");
-      System.out.println("Driver O.K.");
+    public static void main(String[] args) {
+        try {
+            Class.forName("org.postgresql.Driver");
+            System.out.println("Driver O.K.");
 
-      String url = "jdbc:postgresql://localhost:5432/JAVA";
-      String user = "postgres";
-      String passwd = "stri";
+            String url = "jdbc:postgresql://localhost:5432/JAVA";
+            String user = "postgres";
+            String passwd = "stri";
 
-      Connection conn = DriverManager.getConnection(url, user, passwd);
-      System.out.println("Connexion effective !");         
-         
-    } catch (ClassNotFoundException | SQLException e) {
-      e.printStackTrace();
-    }      
-  }
+            Connection conn = DriverManager.getConnection(url, user, passwd);
+            System.out.println("Connexion effective !");
+
+        } catch (ClassNotFoundException | SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }
-    
-    
-

@@ -10,5 +10,5 @@ package Messagerie;
  * @author jerome
  */
 public class Message {
-    
+
 }

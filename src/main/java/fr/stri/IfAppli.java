@@ -12,9 +12,6 @@ import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import java.sql.*;
 
-
-
-
 /**
  *
  * @author 21507124
@@ -29,9 +26,9 @@ public class IfAppli extends javax.swing.JFrame {
      */
     public IfAppli() {
         model = new MyAbstractList();
-        initComponents(); 
-        Color bleuAzur = new Color (245, 250, 250);
-     
+        initComponents();
+        Color bleuAzur = new Color(245, 250, 250);
+
         jInternalFrame1.setBorder(javax.swing.BorderFactory.createEtchedBorder(java.awt.Color.white, null));
         jInternalFrame1.getContentPane().setBackground(Color.WHITE);
         jPanel1.setBackground(bleuAzur);
@@ -42,7 +39,7 @@ public class IfAppli extends javax.swing.JFrame {
         jPanel6.setBackground(Color.WHITE);
         taMsgSalon.setBackground(Color.WHITE);
         jPanel7.setBackground(bleuAzur);
-      
+
     }
 
     /**
@@ -272,11 +269,11 @@ public class IfAppli extends javax.swing.JFrame {
 
         Calendar cal = Calendar.getInstance();
         int minute = cal.get(Calendar.MINUTE);
-        int hour =(Calendar.HOUR_OF_DAY);
+        int hour = (Calendar.HOUR_OF_DAY);
         int day = cal.get(Calendar.DAY_OF_MONTH);
         int month = cal.get(Calendar.MONTH);
         int year = cal.get(Calendar.YEAR);
-        String date = (day+"/"+month+"/"+year);
+        String date = (day + "/" + month + "/" + year);
 
         //En cours: condition pour afficher explicitement que c'est une nouvelle journée depuis le dernier message
         //BDD: Besoin d'un champs dateDernierMessage pour la table salon
@@ -284,22 +281,18 @@ public class IfAppli extends javax.swing.JFrame {
         {
             jTextArea1.append(date);
         }*/
-
-        taMsgSalon.append(hour+ ":" +minute+"   "+text+"\n");
+        taMsgSalon.append(hour + ":" + minute + "   " + text + "\n");
 
         tfSendMessage.selectAll();
 
         tfSendMessage.setCaretPosition(tfSendMessage.getDocument().getLength());
         tfSendMessage.getText();
         tfSendMessage.setText("");
-        
+
         /*jLabel2.setVisible(false);
         jLabel2.setIcon(new javax.swing.ImageIcon("Z:\\21507056\\Documents\\babypanda - Copie.jpg")); // NOI18N
         jLabel2.setLocation(250, 15);
-       */ 
-        
-
-        
+         */
     }//GEN-LAST:event_tfSendMessageActionPerformed
 
     private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
@@ -307,17 +300,17 @@ public class IfAppli extends javax.swing.JFrame {
     }//GEN-LAST:event_jComboBox2ActionPerformed
 
     private void btnActualiserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualiserActionPerformed
-        Personne p = new Personne("Nom","Prenom");
+        Personne p = new Personne("Nom", "Prenom");
         model.add(p);
         JMenuItem mi = new JMenuItem();
 
 // affectation du texte
-mi.setText("le texte");
+        mi.setText("le texte");
 
 // l'item de menu est actif
-mi.setEnabled(true);
+        mi.setEnabled(true);
 // Ajout de l'item à un menu 
-mnuMembres.add(mi);
+        mnuMembres.add(mi);
     }//GEN-LAST:event_btnActualiserActionPerformed
 
     private void lstPersonnesComponentAdded(java.awt.event.ContainerEvent evt) {//GEN-FIRST:event_lstPersonnesComponentAdded
@@ -325,11 +318,11 @@ mnuMembres.add(mi);
     }//GEN-LAST:event_lstPersonnesComponentAdded
 
     private void mnuGestionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuGestionActionPerformed
-        
+
     }//GEN-LAST:event_mnuGestionActionPerformed
 
     private void mnuDescriptionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuDescriptionActionPerformed
-       
+
     }//GEN-LAST:event_mnuDescriptionActionPerformed
 
     private void mnuDescriptionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mnuDescriptionMouseClicked
@@ -345,8 +338,8 @@ mnuMembres.add(mi);
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
-          ConnexionBDD cbdd = new ConnexionBDD() ;
-          cbdd.connexion();
+        ConnexionBDD cbdd = new ConnexionBDD();
+        cbdd.connexion();
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -365,16 +358,16 @@ mnuMembres.add(mi);
         }
         //</editor-fold>
 
-               
-        
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new IfAppli().setVisible(true);
             }
         });
+
+        /* TEST BDD REQUETTE*/
     }
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnActualiser;
     private javax.swing.JComboBox jComboBox1;

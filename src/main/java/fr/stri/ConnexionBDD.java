@@ -7,26 +7,48 @@ package fr.stri;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author jerome
  */
+//Argument 
 public class ConnexionBDD {
-  public void connexion() {      
-    try {
-      Class.forName("org.postgresql.Driver");
-      System.out.println("Driver O.K.");
 
-      String url = "jdbc:postgresql://localhost:5432/java";
-      String user = "postgres";
-      String passwd = "stri";
+    public Connection connexion() {
+        Connection conn = null;
+        try {
 
-      Connection conn = DriverManager.getConnection(url, user, passwd);
-      System.out.println("Connexion effective !");         
-         
-    } catch (ClassNotFoundException | SQLException e) {
-      e.printStackTrace();
-    }      
-  }    
+            String url = "jdbc:postgresql://localhost:5432/java";
+            String user = "postgres";
+            String passwd = "stri";
+            Class.forName("org.postgresql.Driver");
+            System.out.println("Driver O.K.");
+
+            conn = DriverManager.getConnection(url, user, passwd);
+            System.out.println("Connexion effective !");
+
+        } catch (ClassNotFoundException | SQLException e) {
+            e.printStackTrace();
+
+        }
+        return conn;
+    }
+
+    public void test() {
+        try {
+            Connection conn = connexion();
+            Statement stmt = null;
+
+            stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT * FROM Users;");
+        } catch (SQLException ex) {
+            Logger.getLogger(ConnexionBDD.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 }
