@@ -285,35 +285,40 @@ public class IfAppli extends javax.swing.JFrame {
         String text = tfSendMessage.getText();
 
         Calendar cal = Calendar.getInstance();
+        int seconde = cal.get(Calendar.SECOND);
         int minute = cal.get(Calendar.MINUTE);
-        int hour = (Calendar.HOUR_OF_DAY);
-        int day = cal.get(Calendar.DAY_OF_MONTH);
-        int month = cal.get(Calendar.MONTH);
-        int year = cal.get(Calendar.YEAR);
-        String date = (day + "/" + month + "/" + year);
-
+        int heure =(Calendar.HOUR_OF_DAY);
+        int jour = cal.get(Calendar.DAY_OF_MONTH);
+        int mois = cal.get(Calendar.MONTH);
+        int annee = cal.get(Calendar.YEAR);
+        String date = (jour+"/"+mois+"/"+annee);
+        String horaire = (heure+":"+minute+":"+seconde);
+        
+        /*Reste a mettre le login dynamique, comme l'id salon*/
+        String envoieMsg = "INSERT INTO Message(date_Message,heure_Message,contenu,login_envoi,idSalon) VALUES ('"+date+"','"+horaire+"','"+text+"','Jean-Pat',1)";
+        
+        ConnexionBDD cbdd = new ConnexionBDD();
+        cbdd.insertSql(envoieMsg);
+        
         //En cours: condition pour afficher explicitement que c'est une nouvelle journée depuis le dernier message
         //BDD: Besoin d'un champs dateDernierMessage pour la table salon
         /*if (cal.get(Calendar.DAY_OF_YEAR) != dateDernierMessage)
-         {
-         jTextArea1.append(date);
-         }*/
+        {
+            jTextArea1.append(date);
+        }*/
 
-        taMsgSalon.append(hour + ":" + minute + "   " + text + "\n");
+        taMsgSalon.append(heure+ ":" +minute+"   "+text+"\n");
 
         tfSendMessage.selectAll();
 
         tfSendMessage.setCaretPosition(tfSendMessage.getDocument().getLength());
         tfSendMessage.getText();
         tfSendMessage.setText("");
-
+        
         /*jLabel2.setVisible(false);
-         jLabel2.setIcon(new javax.swing.ImageIcon("Z:\\21507056\\Documents\\babypanda - Copie.jpg")); // NOI18N
-         jLabel2.setLocation(250, 15);
-         */
-
-
-
+        jLabel2.setIcon(new javax.swing.ImageIcon("Z:\\21507056\\Documents\\babypanda - Copie.jpg")); // NOI18N
+        jLabel2.setLocation(250, 15);
+       */ 
     }//GEN-LAST:event_tfSendMessageActionPerformed
 
     private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
@@ -353,7 +358,6 @@ public class IfAppli extends javax.swing.JFrame {
         String personSelect = (lstPersonnes.getSelectedValue().toString());
 
         //jComboBox2.toString();
-
         if (evt.getClickCount() == 2 && !evt.isConsumed()) {
             evt.consume();
             System.out.println(personSelect);
@@ -369,17 +373,10 @@ public class IfAppli extends javax.swing.JFrame {
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
-       
-        
-        
-        
+
         ConnexionBDD cbdd = new ConnexionBDD();
         cbdd.test();
-        
-        
-        
-        
-        
+
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -399,19 +396,14 @@ public class IfAppli extends javax.swing.JFrame {
         //</editor-fold>
 
         /*--------------------------------------------------*/
-
-
-
-        /*----------------------------------------------------------*/
-        /* Create and display the form */
+ /*----------------------------------------------------------*/
+ /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new IfAppli().setVisible(true);
             }
         });
-   
-    
-    
+
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnActualiser;

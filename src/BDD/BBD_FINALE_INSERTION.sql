@@ -50,7 +50,7 @@ CREATE TABLE Message(
 	idSalon       INT   ,
 	CONSTRAINT prk_constraint_Message PRIMARY KEY (idMessage)
 );
-
+INSERT INTO Message VALUES (1,'15/02/1995','20:23:45','bonjour','Jean-Pat',1,1);
 
 ------------------------------------------------------------
 -- Table: Admin

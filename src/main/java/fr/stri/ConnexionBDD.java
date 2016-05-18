@@ -10,6 +10,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Calendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -31,7 +32,7 @@ public class ConnexionBDD {
             //System.out.println("Driver O.K.");
 
             conn = DriverManager.getConnection(url, user, passwd);
-           // System.out.println("Connexion effective !");
+            // System.out.println("Connexion effective !");
 
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
@@ -47,29 +48,36 @@ public class ConnexionBDD {
 
             stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery("SELECT * FROM Users;");
-           
-           
-            while ( rs.next() ) {
-             
-            String  login = rs.getString("login");
-            String  mdp = rs.getString("mdp");
-            
-            System.out.println( "login = " + login );
-            System.out.println( "mdp = " + mdp );
+
+            while (rs.next()) {
+
+                String login = rs.getString("login");
+                String mdp = rs.getString("mdp");
+
+                System.out.println("login = " + login);
+                System.out.println("mdp = " + mdp);
             }
 
         } catch (SQLException ex) {
             Logger.getLogger(ConnexionBDD.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+         
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
+        public void insertSql(String requete) {
+
+        try {
+            Connection conn = connexion();
+            Statement stmt = null;
+            stmt = conn.createStatement();
+            
+            stmt.executeUpdate(requete);
+            stmt.close();
+            conn.commit();
+            conn.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(ConnexionBDD.class.getName()).log(Level.SEVERE, null, ex);
+        }
+           
+        }     
+
 }
