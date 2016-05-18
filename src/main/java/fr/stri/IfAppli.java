@@ -370,7 +370,8 @@ public class IfAppli extends javax.swing.JFrame {
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
         ConnexionBDD cbdd = new ConnexionBDD();
-        cbdd.connexion();
+       
+        cbdd.test();
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -400,6 +401,9 @@ public class IfAppli extends javax.swing.JFrame {
                 new IfAppli().setVisible(true);
             }
         });
+   
+    
+    
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnActualiser;
