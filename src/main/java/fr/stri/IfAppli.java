@@ -361,8 +361,7 @@ mnuMembres.add(mi);
         if (evt.getClickCount() == 2 && !evt.isConsumed()) {
                     evt.consume();
                     System.out.println(personSelect);
-            }
-        
+            }        
     }//GEN-LAST:event_lstPersonnesMouseClicked
 
     /**
