@@ -9,5 +9,4 @@ package fr.stri;
  * @author 21507124
  */
 public class Actualiser {
-    
 }

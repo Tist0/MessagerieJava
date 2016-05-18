@@ -20,13 +20,13 @@ public class MyAbstractList extends AbstractListModel<Personne> {
     private List<Personne> myList = new ArrayList<>();
 
     @Override
-    public int getSize() {        
+    public int getSize() {
         return myList.size();
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public Personne getElementAt(int index) {       
+    public Personne getElementAt(int index) {
         //   throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
         return myList.get(index);
     }
@@ -34,7 +34,5 @@ public class MyAbstractList extends AbstractListModel<Personne> {
     void add(Personne p) {
         myList.add(p);
         this.fireContentsChanged(this, 0, myList.size());
-    } 
-    
- 
+    }
 }
