@@ -21,8 +21,8 @@ class Personne {
     public String getNomPrenom() {
         return (nom + " " + prenom);
     }
-
     // Getters et setters
+
     public String getNom() {
         return nom;
     }

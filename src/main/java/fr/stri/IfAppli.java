@@ -6,6 +6,8 @@ package fr.stri;
 
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Calendar;
 import javax.swing.JMenuItem;
@@ -26,9 +28,19 @@ public class IfAppli extends javax.swing.JFrame {
      */
     public IfAppli() {
         model = new MyAbstractList();
+        Personne p1 = new Personne("BUGE", "Pascal");
+        Personne p2 = new Personne("BONOBO", "Florian");
+        model.add(p1);
+        model.add(p2);
         initComponents();
         Color bleuAzur = new Color(245, 250, 250);
 
+        /**
+         * **
+         */
+        /**
+         * **
+         */
         jInternalFrame1.setBorder(javax.swing.BorderFactory.createEtchedBorder(java.awt.Color.white, null));
         jInternalFrame1.getContentPane().setBackground(Color.WHITE);
         jPanel1.setBackground(bleuAzur);
@@ -75,6 +87,11 @@ public class IfAppli extends javax.swing.JFrame {
         setResizable(false);
 
         lstPersonnes.setModel(model);
+        lstPersonnes.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lstPersonnesMouseClicked(evt);
+            }
+        });
         lstPersonnes.addContainerListener(new java.awt.event.ContainerAdapter() {
             public void componentAdded(java.awt.event.ContainerEvent evt) {
                 lstPersonnesComponentAdded(evt);
@@ -278,9 +295,10 @@ public class IfAppli extends javax.swing.JFrame {
         //En cours: condition pour afficher explicitement que c'est une nouvelle journée depuis le dernier message
         //BDD: Besoin d'un champs dateDernierMessage pour la table salon
         /*if (cal.get(Calendar.DAY_OF_YEAR) != dateDernierMessage)
-        {
-            jTextArea1.append(date);
-        }*/
+         {
+         jTextArea1.append(date);
+         }*/
+
         taMsgSalon.append(hour + ":" + minute + "   " + text + "\n");
 
         tfSendMessage.selectAll();
@@ -290,9 +308,12 @@ public class IfAppli extends javax.swing.JFrame {
         tfSendMessage.setText("");
 
         /*jLabel2.setVisible(false);
-        jLabel2.setIcon(new javax.swing.ImageIcon("Z:\\21507056\\Documents\\babypanda - Copie.jpg")); // NOI18N
-        jLabel2.setLocation(250, 15);
+         jLabel2.setIcon(new javax.swing.ImageIcon("Z:\\21507056\\Documents\\babypanda - Copie.jpg")); // NOI18N
+         jLabel2.setLocation(250, 15);
          */
+
+
+
     }//GEN-LAST:event_tfSendMessageActionPerformed
 
     private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
@@ -302,6 +323,7 @@ public class IfAppli extends javax.swing.JFrame {
     private void btnActualiserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualiserActionPerformed
         Personne p = new Personne("Nom", "Prenom");
         model.add(p);
+
         JMenuItem mi = new JMenuItem();
 
 // affectation du texte
@@ -318,16 +340,25 @@ public class IfAppli extends javax.swing.JFrame {
     }//GEN-LAST:event_lstPersonnesComponentAdded
 
     private void mnuGestionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuGestionActionPerformed
-
     }//GEN-LAST:event_mnuGestionActionPerformed
 
     private void mnuDescriptionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuDescriptionActionPerformed
-
     }//GEN-LAST:event_mnuDescriptionActionPerformed
 
     private void mnuDescriptionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mnuDescriptionMouseClicked
         JOptionPane.showMessageDialog(taMsgSalon, "Description du salon : Les pandas ça sert à rien!");
     }//GEN-LAST:event_mnuDescriptionMouseClicked
+
+    private void lstPersonnesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lstPersonnesMouseClicked
+        String personSelect = (lstPersonnes.getSelectedValue().toString());
+
+        //jComboBox2.toString();
+
+        if (evt.getClickCount() == 2 && !evt.isConsumed()) {
+            evt.consume();
+            System.out.println(personSelect);
+        }
+    }//GEN-LAST:event_lstPersonnesMouseClicked
 
     /**
      * @param args the command line arguments
@@ -358,16 +389,18 @@ public class IfAppli extends javax.swing.JFrame {
         }
         //</editor-fold>
 
+        /*--------------------------------------------------*/
+
+
+
+        /*----------------------------------------------------------*/
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new IfAppli().setVisible(true);
             }
         });
-
-        /* TEST BDD REQUETTE*/
     }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnActualiser;
     private javax.swing.JComboBox jComboBox1;
