@@ -1,0 +1,10 @@
+    private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {                                           
+        
+        String choixEnligneAbsent = (jComboBox2.getSelectedItem()).toString();
+        jLabel2.setText(choixEnligneAbsent);
+        //jComboBox2.toString();
+        if ("En ligne".equals(choixEnligneAbsent))
+            jLabel2.setVisible(false);    
+        else
+            jLabel2.setVisible(true);// TODO add your handling code here:
+    }        
