@@ -61,7 +61,10 @@ public class ConnexionBDD {
         } catch (SQLException ex) {
             Logger.getLogger(ConnexionBDD.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
     }
+    
+    
     
     
     
