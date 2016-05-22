@@ -32,6 +32,7 @@ CREATE TABLE Users(
 CREATE TABLE Salon(
 	idSalon   SERIAL NOT NULL ,
 	nom_Salon VARCHAR (25)  ,
+        description_salon VARCHAR (50)  ,
 	idAdmin   INT   ,
 	CONSTRAINT prk_constraint_Salon PRIMARY KEY (idSalon)
 );
@@ -91,8 +92,8 @@ INSERT INTO Users VALUES ('Jean-Mimi','stri',FALSE);
 
 INSERT INTO Admin (login_admin) VALUES ('Jean-Mimi');
 
-INSERT INTO Salon VALUES (1,'LES-TUEURS',1);
-INSERT INTO Salon VALUES (2,'LES-VIOLENTS',1);
+INSERT INTO Salon VALUES (1,'LES-TUEURS','Salon des tueurs',1);
+INSERT INTO Salon VALUES (2,'LES-VIOLENTS','Salon des violents',1);
 
 INSERT INTO Acceder VALUES ('Jean-Pat',1);
 INSERT INTO Acceder VALUES ('Jean-Mimi',1);
