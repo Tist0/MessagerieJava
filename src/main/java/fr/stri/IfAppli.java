@@ -92,6 +92,15 @@ public class IfAppli extends javax.swing.JFrame {
                 lstPersonnesComponentAdded(evt);
             }
         });
+        lstPersonnes.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                lstPersonnesAncestorAdded(evt);
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
         lstPersonnes.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lstPersonnesMouseClicked(evt);
@@ -443,6 +452,11 @@ public class IfAppli extends javax.swing.JFrame {
             Logger.getLogger(IfAppli.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_mnuMembresMouseClicked
+
+    private void lstPersonnesAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_lstPersonnesAncestorAdded
+              // TODO add your handling code here:
+              
+    }//GEN-LAST:event_lstPersonnesAncestorAdded
 
     /**
      * @param args the command line arguments
