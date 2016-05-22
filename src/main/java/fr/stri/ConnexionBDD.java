@@ -80,4 +80,34 @@ public class ConnexionBDD {
            
         }     
 
+        
+        
+        public String descriptionSQL(String nomSalon)
+        {
+            String descri = null;        
+        try {
+            Connection conn = connexion();
+            Statement stmt = null;
+            stmt = conn.createStatement();
+            String q = "SELECT description_salon FROM Salon Where nom_salon='";
+            q = q.concat(nomSalon);
+            q = q.concat("';");
+           // System.out.println(q);
+            ResultSet rs = stmt.executeQuery(q);
+            
+             while (rs.next()) {
+            descri = rs.getString("description_salon");
+            //System.out.println(descri);
+            
+             }
+                     
+            return descri;
+            
+        } 
+        catch (SQLException ex) {
+            Logger.getLogger(ConnexionBDD.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+        
+        }
 }

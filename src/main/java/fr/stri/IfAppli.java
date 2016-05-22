@@ -351,7 +351,10 @@ public class IfAppli extends javax.swing.JFrame {
     }//GEN-LAST:event_mnuDescriptionActionPerformed
 
     private void mnuDescriptionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mnuDescriptionMouseClicked
-        JOptionPane.showMessageDialog(taMsgSalon, "Description du salon : Les pandas ça sert à rien!");
+        /*########*/
+        ConnexionBDD cbdd = new ConnexionBDD();
+        String description = cbdd.descriptionSQL("LES-TUEURS");
+        JOptionPane.showMessageDialog(taMsgSalon, description);
     }//GEN-LAST:event_mnuDescriptionMouseClicked
 
     private void lstPersonnesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lstPersonnesMouseClicked
