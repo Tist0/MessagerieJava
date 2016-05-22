@@ -57,7 +57,6 @@ public class IfAppli extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-        bindingGroup = new org.jdesktop.beansbinding.BindingGroup();
 
         jPanel1 = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
@@ -171,10 +170,6 @@ public class IfAppli extends javax.swing.JFrame {
         taMsgSalon.setEditable(false);
         taMsgSalon.setColumns(20);
         taMsgSalon.setRows(5);
-
-        org.jdesktop.beansbinding.Binding binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, new javax.swing.JButton(), org.jdesktop.beansbinding.ELProperty.create("true"), taMsgSalon, org.jdesktop.beansbinding.BeanProperty.create("lineWrap"));
-        bindingGroup.addBinding(binding);
-
         jScrollPane2.setViewportView(taMsgSalon);
 
         jMenuBar1.setBackground(new java.awt.Color(255, 255, 255));
@@ -223,7 +218,7 @@ public class IfAppli extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 352, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(tfSendMessage, javax.swing.GroupLayout.DEFAULT_SIZE, 42, Short.MAX_VALUE)
+                .addComponent(tfSendMessage, javax.swing.GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -231,6 +226,11 @@ public class IfAppli extends javax.swing.JFrame {
         jComboBox1.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 jComboBox1ItemStateChanged(evt);
+            }
+        });
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
             }
         });
 
@@ -295,8 +295,6 @@ public class IfAppli extends javax.swing.JFrame {
             .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 625, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
-        bindingGroup.bind();
-
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -315,10 +313,14 @@ public class IfAppli extends javax.swing.JFrame {
         String horaire = (heure+":"+minute+":"+seconde);
         
         /*Reste a mettre l'id salon dynamique*/
+        String titreSalon = jComboBox1.getSelectedItem().toString(); 
+        ConnexionBDD cbddd = new ConnexionBDD();        
+        String recupIdSalon = cbddd.getIdSalon(titreSalon);
+                
         Identification login = new Identification();
         String loginUse = login.log1.getLogin(); 
         System.err.println("TEST" + login);
-        String envoieMsg = "INSERT INTO Message(date_Message,heure_Message,contenu,login_envoi,idSalon) VALUES ('"+date+"','"+horaire+"','"+text+"','"+loginUse+"',1);";
+        String envoieMsg = "INSERT INTO Message(date_Message,heure_Message,contenu,login_envoi,idSalon) VALUES ('"+date+"','"+horaire+"','"+text+"','"+loginUse+"','"+recupIdSalon+"');";
         System.err.println("TEST" + envoieMsg);
      
         ConnexionBDD cbdd = new ConnexionBDD();
@@ -412,6 +414,10 @@ public class IfAppli extends javax.swing.JFrame {
         tfSendMessage.setText("Entrer un message ici");  
     }//GEN-LAST:event_tfSendMessageFocusLost
 
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -471,7 +477,6 @@ public class IfAppli extends javax.swing.JFrame {
     private javax.swing.JMenu mnuMembres;
     private javax.swing.JTextArea taMsgSalon;
     private javax.swing.JTextField tfSendMessage;
-    private org.jdesktop.beansbinding.BindingGroup bindingGroup;
     // End of variables declaration//GEN-END:variables
 
 public void actualiserListeSalon() {
@@ -494,6 +499,7 @@ public void actualiser() {
      /*Clear/Reset avant d'actualiser*/    
         model.clear();
         taMsgSalon.setText("");
+        mnuMembres.removeAll();
         
         /*-----------------------------------------------*/
         /*ConnexionBDD salonBD = new ConnexionBDD();
