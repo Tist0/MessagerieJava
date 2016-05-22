@@ -107,7 +107,7 @@ public class GererConversations extends javax.swing.JPanel {
         
         
         String txtSalon = salon.replace("\'","\''");
-        String txtDescription = salon.replace("\'","\''");
+        String txtDescription = description.replace("\'","\''");
         System.out.println("Salon : "+txtSalon+" Description : " + txtDescription);
         String envoieMsg = "INSERT INTO salon(nom_salon,description_salon,idadmin) VALUES ('"+txtSalon+"','"+txtDescription+"',1);";
         System.out.println(envoieMsg);

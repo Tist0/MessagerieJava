@@ -89,7 +89,7 @@ public class ConnexionBDD {
 
             stmt = conn.createStatement();
             ResultSet rs;                        
-            rs = stmt.executeQuery("SELECT nom_salon FROM SALON ORDER BY nom_salon ASC;");   
+            rs = stmt.executeQuery("SELECT nom_salon FROM SALON WHERE ORDER BY nom_salon ASC;");   
             conn.close();    //BUGED ?
             return rs;
             
