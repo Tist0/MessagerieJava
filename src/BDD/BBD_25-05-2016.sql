@@ -95,26 +95,40 @@ INSERT INTO Users VALUES ('admin','stri',TRUE);
 
 INSERT INTO Admin(login_admin) VALUES ('admin');
 
+INSERT INTO Salon(nom_Salon,description_salon,idAdmin) VALUES ('Disscution PUBLIC','Salon de discution Public',1);
 INSERT INTO Salon(nom_Salon,description_salon,idAdmin) VALUES ('Pojet IHM','Salon des spécialistes IHM',1);
 INSERT INTO Salon(nom_Salon,description_salon,idAdmin) VALUES ('Projet BDD','Salon des spécialistes BDD',1);
 INSERT INTO Salon(nom_Salon,description_salon,idAdmin) VALUES ('Projet PHP','Salon des spécialistes PHP',1);
 
+/*Tchat public*/
 INSERT INTO Acceder(login,idSalon) VALUES ('Jean-Pat',1);
 INSERT INTO Acceder(login,idSalon) VALUES ('Jean-Mimi',1);
+INSERT INTO Acceder(login,idSalon) VALUES ('Jean-Krikri',1);
+INSERT INTO Acceder(login,idSalon) VALUES ('Jean-Jean',1);
+INSERT INTO Acceder(login,idSalon) VALUES ('Jean-Vivi',1);
 INSERT INTO Acceder(login,idSalon) VALUES ('STRI',1);
+INSERT INTO Acceder(login,idSalon) VALUES ('admin',1);
+
+INSERT INTO Acceder(login,idSalon) VALUES ('Jean-Pat',2);
+INSERT INTO Acceder(login,idSalon) VALUES ('Jean-Pat',3);
+INSERT INTO Acceder(login,idSalon) VALUES ('Jean-Pat',4);
 
 INSERT INTO Acceder(login,idSalon) VALUES ('Jean-Mimi',2);
+INSERT INTO Acceder(login,idSalon) VALUES ('Jean-Mimi',3);
+
+INSERT INTO Acceder(login,idSalon) VALUES ('Jean-Krikri',4);
+INSERT INTO Acceder(login,idSalon) VALUES ('Jean-Krikri',2);
+
+
 INSERT INTO Acceder(login,idSalon) VALUES ('STRI',2);
-
 INSERT INTO Acceder(login,idSalon) VALUES ('STRI',3);
-INSERT INTO Acceder(login,idSalon) VALUES ('Jean-Jean',3);
+INSERT INTO Acceder(login,idSalon) VALUES ('STRI',4);
+
+INSERT INTO Acceder(login,idSalon) VALUES ('admin',2);
+INSERT INTO Acceder(login,idSalon) VALUES ('admin',3);
+INSERT INTO Acceder(login,idSalon) VALUES ('admin',4);
 
 
-/*A suprimer*/
-INSERT INTO Message(date_Message,heure_Message,contenu,login_envoi,idSalon ) VALUES ('15/02/1995','20:23:45','bonjour','Jean-Pat',1);
-INSERT INTO Message(date_Message,heure_Message,contenu,login_envoi,idSalon ) VALUES ('15/02/1995','20:26:12','bonjour','Jean-Mimi',1);
-INSERT INTO Message(date_Message,heure_Message,contenu,login_envoi,idSalon ) VALUES ('15/02/2225','23:23:23','MERCI','Jean-Mimi',2);
-INSERT INTO Message(date_Message,heure_Message,contenu,login_envoi,idSalon ) VALUES ('25/05/2016','14:19:20','Test','STRI',2);
 
 
 

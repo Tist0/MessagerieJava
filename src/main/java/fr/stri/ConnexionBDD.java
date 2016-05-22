@@ -25,7 +25,7 @@ public class ConnexionBDD {
         Connection conn = null;
         try {
 
-            String url = "jdbc:postgresql://localhost:5432/java2";
+            String url = "jdbc:postgresql://localhost:5432/java3";
             String user = "postgres";
             String passwd = "stri";
             Class.forName("org.postgresql.Driver");
@@ -81,15 +81,19 @@ public class ConnexionBDD {
         return rs;
      }
      
-     public ResultSet listeSalon() {
+     public ResultSet listeSalon(String nom_salon) {
              
         try {    
             Connection conn = connexion();
             Statement stmt = null;
 
             stmt = conn.createStatement();
-            ResultSet rs;                        
-            rs = stmt.executeQuery("SELECT nom_salon FROM SALON WHERE ORDER BY nom_salon ASC;");   
+            ResultSet rs;          
+            String q = "SELECT S.nom_salon FROM SALON AS s, Users as U, acceder as a WHERE s.idsalon=a.idsalon AND u.login =a.login AND u.login = '";
+            q = q.concat(nom_salon);
+            q = q.concat("' ORDER BY nom_salon ASC;");
+            rs = stmt.executeQuery(q); 
+            //rs = stmt.executeQuery("SELECT nom_salon FROM SALON ORDER BY nom_salon ASC;");   
             conn.close();    //BUGED ?
             return rs;
             
@@ -276,7 +280,7 @@ public class ConnexionBDD {
             String q = "SELECT login,mdp FROM Users Where login ='";
             q = q.concat(login);
             q = q.concat("';");
-           // System.out.println(q);
+           
             ResultSet rs = stmt.executeQuery(q);
             
              while (rs.next()) {
