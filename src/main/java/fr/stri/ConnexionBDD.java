@@ -311,6 +311,38 @@ public class ConnexionBDD {
         
         }
         
+     /* ####*/
+        
+                
+        public ResultSet getMembreCoSalon(String nomSalon)
+        {
+                   
+        try {
+            Connection conn = connexion();
+            Statement stmt = null;
+            stmt = conn.createStatement();
+            String q = "select s.nom_salon,u.login from salon as s, users as u,acceder as a where s.idsalon=a.idsalon AND u.login=a.login AND  u.statut='t'  AND s.nom_salon='";
+            q = q.concat(nomSalon);
+            q = q.concat("';");
+            
+           // System.out.println(q);
+            ResultSet rs = stmt.executeQuery(q);
+            
+             
+                 conn.close();    //BUGED ?    
+            return rs;
+            
+        } 
+        catch (SQLException ex) {
+            Logger.getLogger(ConnexionBDD.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+        
+        }
+
+        
+        
+        
         
         
 }

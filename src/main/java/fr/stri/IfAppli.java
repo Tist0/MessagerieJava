@@ -38,7 +38,7 @@ public class IfAppli extends javax.swing.JFrame {
         actualiserListeSalon();
         actualiser();
         
-        Timer tMessage = new Timer(2000, new ActionListener() {
+        Timer tMessage = new Timer(1000, new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
             actualiser();
@@ -189,6 +189,11 @@ public class IfAppli extends javax.swing.JFrame {
         jMenuBar1.add(mnuDescription);
 
         mnuMembres.setText("Membres connectés");
+        mnuMembres.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                mnuMembresMouseClicked(evt);
+            }
+        });
         jMenuBar1.add(mnuMembres);
 
         mnuGestion.setText("Gestion du salon");
@@ -218,7 +223,7 @@ public class IfAppli extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 352, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(tfSendMessage, javax.swing.GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE)
+                .addComponent(tfSendMessage, javax.swing.GroupLayout.DEFAULT_SIZE, 48, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -418,6 +423,27 @@ public class IfAppli extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
+    private void mnuMembresMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mnuMembresMouseClicked
+        // affectation du texte
+        mnuMembres.removeAll();
+        String titreSalon = jComboBox1.getSelectedItem().toString(); 
+        ConnexionBDD cbdd2 = new ConnexionBDD();
+        ResultSet rs2 = cbdd2.getMembreCoSalon(titreSalon);
+        
+        try {
+            while (rs2.next()) {
+                JMenuItem mi = new JMenuItem();
+                String login = rs2.getString("login");               
+               //mi.setText(p.getNom());
+                mi.setText(login);
+                mi.setEnabled(true);
+                mnuMembres.add(mi);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(IfAppli.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_mnuMembresMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -499,7 +525,7 @@ public void actualiser() {
      /*Clear/Reset avant d'actualiser*/    
         model.clear();
         taMsgSalon.setText("");
-        mnuMembres.removeAll();
+
         
         /*-----------------------------------------------*/
         /*ConnexionBDD salonBD = new ConnexionBDD();
@@ -558,16 +584,17 @@ public void actualiser() {
             /*Reste a mettre le login dynamique, comme l'id salon*/
             
         /*------------------------------------------*/
-        JMenuItem mi = new JMenuItem();
-
-        // affectation du texte
-        mi.setText("le texte");
-
-        // l'item de menu est actif
-        mi.setEnabled(true);
-        // Ajout de l'item à un menu 
         
-        mnuMembres.add(mi);
+
+        
+        
+        
+        
+
+      
+      
+        
+        
         
         /*Affecte le login de la personne connecté au lable1 (au-dessus du bouton absent)*/
         Identification login = new Identification();
