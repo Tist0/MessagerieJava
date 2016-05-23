@@ -287,7 +287,7 @@ public class IfAppli extends javax.swing.JFrame {
         Calendar cal = Calendar.getInstance();
         int seconde = cal.get(Calendar.SECOND);
         int minute = cal.get(Calendar.MINUTE);
-        int heure =(Calendar.HOUR_OF_DAY);
+        int heure =cal.get(Calendar.HOUR_OF_DAY);
         int jour = cal.get(Calendar.DAY_OF_MONTH);
         int mois = cal.get(Calendar.MONTH);
         int annee = cal.get(Calendar.YEAR);
