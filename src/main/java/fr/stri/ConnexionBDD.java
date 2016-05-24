@@ -60,10 +60,35 @@ public class ConnexionBDD {
 
         } catch (SQLException ex) {
             Logger.getLogger(ConnexionBDD.class.getName()).log(Level.SEVERE, null, ex);
-        }
-         
+        }  
     }
-        public void insertSql(String requete) {
+    
+     public ResultSet listeMembre() {
+        
+        try {
+            Connection conn = connexion();
+            Statement stmt = null;
+
+            stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT login FROM Users;");
+
+            return rs;
+            /*   while (rs.next()) {
+            String login = rs.getString("login");
+            Personne p = new Personne(login, "prenom");
+            
+            }
+            
+            }  */
+        } catch (SQLException ex) {
+            Logger.getLogger(ConnexionBDD.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        ResultSet rs = null;
+        return rs;
+     }
+     
+   
+    public void insertSql(String requete) {
 
         try {
             Connection conn = connexion();

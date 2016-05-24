@@ -13,6 +13,8 @@ import java.util.Calendar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import java.sql.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -28,8 +30,8 @@ public class IfAppli extends javax.swing.JFrame {
      */
     public IfAppli() {
         model = new MyAbstractList();
-        Personne p1 = new Personne("BUGE", "Pascal");
-        Personne p2 = new Personne("BONOBO", "Florian");
+        Personne p1 = new Personne("BUGE");
+        Personne p2 = new Personne("BONOBO");
         model.add(p1);
         model.add(p2);
         initComponents();
@@ -326,8 +328,28 @@ public class IfAppli extends javax.swing.JFrame {
     }//GEN-LAST:event_jComboBox2ActionPerformed
 
     private void btnActualiserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualiserActionPerformed
-        Personne p = new Personne("Nom", "Prenom");
-        model.add(p);
+        
+        /*Liste personnes*/
+        /*------------------------------------------*/
+        model.clear();
+        ConnexionBDD cbdd = new ConnexionBDD();
+        ResultSet rs = cbdd.listeMembre();
+        
+        try {
+            while (rs.next()) {
+                String login = rs.getString("login");
+                Personne p = new Personne(login);
+                model.add(p);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(IfAppli.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        /*------------------------------------------*/
+        
+        /*Messagerie*/
+        /*------------------------------------------*/
+        
+        /*------------------------------------------*/
 
         JMenuItem mi = new JMenuItem();
 
@@ -337,6 +359,8 @@ public class IfAppli extends javax.swing.JFrame {
 // l'item de menu est actif
         mi.setEnabled(true);
 // Ajout de l'item à un menu 
+        
+        
         mnuMembres.add(mi);
     }//GEN-LAST:event_btnActualiserActionPerformed
 

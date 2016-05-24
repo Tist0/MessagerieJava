@@ -11,16 +11,11 @@ package fr.stri;
 class Personne {
 
     private String nom;
-    private String prenom;
 
-    public Personne(String nom, String prenom) {
+    public Personne(String nom) {
         this.nom = nom;
-        this.prenom = prenom;
     }
 
-    public String getNomPrenom() {
-        return (nom + " " + prenom);
-    }
     // Getters et setters
 
     public String getNom() {
@@ -31,17 +26,9 @@ class Personne {
         this.nom = nom;
     }
 
-    public String getPrenom() {
-        return prenom;
-    }
-
-    public void setPrenom(String prenom) {
-        this.prenom = prenom;
-    }
-
     @Override
     public String toString() {
-        return getNomPrenom(); //To change body of generated methods, choose Tools | Templates.
+        return getNom(); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

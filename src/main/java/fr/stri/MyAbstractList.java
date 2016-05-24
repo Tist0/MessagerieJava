@@ -35,4 +35,9 @@ public class MyAbstractList extends AbstractListModel<Personne> {
         myList.add(p);
         this.fireContentsChanged(this, 0, myList.size());
     }
+    
+    void clear() {
+        myList.clear();
+        this.fireContentsChanged(this, 0, myList.size());
+    }
 }
