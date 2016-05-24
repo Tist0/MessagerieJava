@@ -135,4 +135,54 @@ public class ConnexionBDD {
         }
         
         }
+        
+        
+        
+        
+        public String identificationSQL(String login,String mdp)
+        {
+         String result = "Erreur Inconue";          
+        try {
+            Connection conn = connexion();
+            Statement stmt = null;
+            stmt = conn.createStatement();
+            String q = "SELECT login,mdp FROM Users Where ='";
+            q = q.concat(login);
+            q = q.concat("';");
+           // System.out.println(q);
+            ResultSet rs = stmt.executeQuery(q);
+            
+             while (rs.next()) {
+                if (login.equals(rs.getString("login")))
+                     {
+                         if (mdp.equals(rs.getString("mdp")))
+                         {
+                             result = "ok";
+                         }
+                         else
+                         {
+                             result ="mot de passe Incorect";
+                         }
+                     
+                     }
+                else
+                    {
+                        result ="Login incorect";
+                    }
+                
+            
+            
+             }
+                     
+            return result;
+            
+        } 
+        catch (SQLException ex) {
+            Logger.getLogger(ConnexionBDD.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+        
+        }
+        
+        
 }
