@@ -324,7 +324,19 @@ public class IfAppli extends javax.swing.JFrame {
     }//GEN-LAST:event_tfSendMessageActionPerformed
 
     private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
-        // TODO add your handling code here:
+        String statut = jComboBox2.getSelectedItem().toString();
+        if ("En ligne".equals(statut)){
+            /*String envoieMsg = "UPDATE "users" SET statut = '1' WHERE login = 'Albert';";
+        
+            ConnexionBDD cbdd = new ConnexionBDD();
+            cbdd.insertSql(envoieMsg);*/
+        }
+        else{
+        /*String envoieMsg = "UPDATE "users" SET statut = '0' WHERE login = 'Albert';";
+        
+            ConnexionBDD cbdd = new ConnexionBDD();
+            cbdd.insertSql(envoieMsg);*/
+        }
     }//GEN-LAST:event_jComboBox2ActionPerformed
 
     private void btnActualiserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualiserActionPerformed
