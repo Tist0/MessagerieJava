@@ -73,16 +73,29 @@ public class ConnexionBDD {
             ResultSet rs = stmt.executeQuery("SELECT login FROM Users ORDER BY login ASC;");
 
             return rs;
-            /*   while (rs.next()) {
-            String login = rs.getString("login");
-            Personne p = new Personne(login, "prenom");
-            
-            }
-            
-            }  */
+
         } catch (SQLException ex) {
             Logger.getLogger(ConnexionBDD.class.getName()).log(Level.SEVERE, null, ex);
         }
+        ResultSet rs = null;
+        return rs;
+     }
+     
+     public ResultSet listeSalon() {
+             
+        try {    
+            Connection conn = connexion();
+            Statement stmt = null;
+
+            stmt = conn.createStatement();
+            ResultSet rs;                        
+            rs = stmt.executeQuery("SELECT nom_salon FROM SALON ORDER BY nom_salon ASC;");           
+            return rs;
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(ConnexionBDD.class.getName()).log(Level.SEVERE, null, ex);
+        }  
+
         ResultSet rs = null;
         return rs;
      }
