@@ -358,31 +358,10 @@ public class IfAppli extends javax.swing.JFrame {
             Logger.getLogger(IfAppli.class.getName()).log(Level.SEVERE, null, ex);
         }
         /*------------------------------------------*/
-        /*Récupère les messages de la BDD*/
-        String numSalon = "1";
-        
-        try {
-            ResultSet result = cbdd.recupHistoriqueSQL(numSalon);
-            
-            while (result.next()) {
-                String loginH = result.getString("login_envoi");
-                String dateH = result.getString("date_message");
-                String heureH = result.getString("heure_message");
-                String messH = result.getString("contenu");
-                taMsgSalon.append( loginH+" : "+messH+"\n"+"\t"+dateH+"\t"+heureH+"\n\n");
-                
-                
-            }      
-            
-        } catch (SQLException ex) {
-            Logger.getLogger(IfAppli.class.getName()).log(Level.SEVERE, null, ex);
-        }
         
         /*Messagerie*/
-            /*------------------------------------------*/
-            /*Reste a mettre le login dynamique, comme l'id salon*/
-       
-     
+        /*------------------------------------------*/
+        
         /*------------------------------------------*/
 
         JMenuItem mi = new JMenuItem();
