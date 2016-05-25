@@ -27,7 +27,7 @@ public class ConnexionBDD {
 
             String url = "jdbc:postgresql://localhost:5432/java";
             String user = "postgres";
-            String passwd = "stri";
+            String passwd = "maximinus";
             Class.forName("org.postgresql.Driver");
             //System.out.println("Driver O.K.");
 
@@ -103,9 +103,26 @@ public class ConnexionBDD {
             Logger.getLogger(ConnexionBDD.class.getName()).log(Level.SEVERE, null, ex);
         }
            
-        }     
-
-        
+        }
+    
+        public ResultSet recupHistoriqueSQL(String numSalon) throws SQLException{               
+        Connection conn = connexion();
+            Statement stmt = null;
+            String msg = null;
+        try {
+            stmt = conn.createStatement();
+        } catch (SQLException ex) {
+            Logger.getLogger(IfAppli.class.getName()).log(Level.SEVERE, null, ex);
+        }
+            String recupMsg = "SELECT login,date_message,heure_message,contenu FROM Message, users WHERE idsalon='";
+            recupMsg = recupMsg.concat(numSalon);
+            recupMsg = recupMsg.concat("';");
+           // System.out.println(q);
+          ResultSet rs = stmt.executeQuery(recupMsg);
+            
+            return rs;
+            
+        }
         
         public String descriptionSQL(String nomSalon)
         {
