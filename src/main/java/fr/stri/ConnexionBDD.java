@@ -27,7 +27,7 @@ public class ConnexionBDD {
 
             String url = "jdbc:postgresql://localhost:5432/java";
             String user = "postgres";
-            String passwd = "maximinus";
+            String passwd = "stri";
             Class.forName("org.postgresql.Driver");
             //System.out.println("Driver O.K.");
 
@@ -163,12 +163,12 @@ public class ConnexionBDD {
         
         public String identificationSQL(String login,String mdp)
         {
-         String result = "Erreur Inconue";          
+         String result = "Login incorect";          
         try {
             Connection conn = connexion();
             Statement stmt = null;
             stmt = conn.createStatement();
-            String q = "SELECT login,mdp FROM Users Where ='";
+            String q = "SELECT login,mdp FROM Users Where login ='";
             q = q.concat(login);
             q = q.concat("';");
            // System.out.println(q);
