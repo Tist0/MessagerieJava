@@ -104,7 +104,12 @@ public class ConnexionBDD {
         }
            
         }
-    
+        /**
+         * Permet d'afficher l'historique des messages
+         * @param numSalon
+         * @return 
+         * @throws SQLException 
+         */
         public ResultSet recupHistoriqueSQL(String numSalon) throws SQLException{               
         Connection conn = connexion();
             Statement stmt = null;
