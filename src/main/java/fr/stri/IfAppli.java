@@ -363,8 +363,11 @@ public class IfAppli extends javax.swing.JFrame {
         try {
             ResultSet result = cbdd.recupHistoriqueSQL(numSalon);
             while (result.next()) {
-                String messHisto = result.getString("contenu");
-                taMsgSalon.append(messHisto+"\n");
+                String loginH = result.getString("login");
+                String dateH = result.getString("date_message");
+                String heureH = result.getString("heure_message");
+                String messH = result.getString("contenu");
+                taMsgSalon.append( loginH+dateH+heureH+messH+"\n");
                 
                 
             }      
