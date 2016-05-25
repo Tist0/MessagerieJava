@@ -25,6 +25,8 @@ public class IfAppli extends javax.swing.JFrame {
 
     MyAbstractList model;
     private Component frame;
+    private String login;
+    private int idSalon;
 
     /**
      * Creates new form jframe
@@ -286,7 +288,7 @@ public class IfAppli extends javax.swing.JFrame {
 
     private void tfSendMessageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfSendMessageActionPerformed
         String text = tfSendMessage.getText();
-
+        
         Calendar cal = Calendar.getInstance();
         int seconde = cal.get(Calendar.SECOND);
         int minute = cal.get(Calendar.MINUTE);
@@ -297,9 +299,12 @@ public class IfAppli extends javax.swing.JFrame {
         String date = (jour+"/"+mois+"/"+annee);
         String horaire = (heure+":"+minute+":"+seconde);
         
-        /*Reste a mettre le login dynamique, comme l'id salon*/
-        String envoieMsg = "INSERT INTO Message(date_Message,heure_Message,contenu,login_envoi,idSalon) VALUES ('"+date+"','"+horaire+"','"+text+"','Jean-Pat',1)";
         
+        /*Reste a mettre le login dynamique, comme l'id salon*/
+        System.err.println("TEST" + login);
+        String envoieMsg = "INSERT INTO Message(date_Message,heure_Message,contenu,login_envoi,idSalon) VALUES ('"+date+"','"+horaire+"','"+text+"','"+login+"',1);";
+        System.err.println("TEST" + envoieMsg);
+     
         ConnexionBDD cbdd = new ConnexionBDD();
         cbdd.insertSql(envoieMsg);
         
@@ -428,7 +433,8 @@ public class IfAppli extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+    public static void main(String login) {
+        
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.

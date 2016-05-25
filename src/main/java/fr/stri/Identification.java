@@ -138,7 +138,7 @@ public class Identification extends javax.swing.JFrame {
         String result = cbdd.identificationSQL(login,mdp);
        
        if (result.equals("ok")){
-           //LANCER L4AUTRE MAIN
+           IfAppli.main(login);
        }
        else
        {
