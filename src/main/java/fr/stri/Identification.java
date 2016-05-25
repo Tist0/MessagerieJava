@@ -12,10 +12,10 @@ import javax.swing.JOptionPane;
  * @author jerome
  */
 public class Identification extends javax.swing.JFrame {
-
+    static Login log1 = new Login ("NULL");
     private String login;
     private String mdp;
-
+    public String objetLog;
     /**
      * Creates new form Identification
      */
@@ -130,6 +130,7 @@ public class Identification extends javax.swing.JFrame {
 /*Bouton d'envoi*/
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        
         login = jTextField1.getText();
         mdp = jPasswordField1.getText(); //recuperation du mdp
         System.out.println(login + mdp);
@@ -139,6 +140,7 @@ public class Identification extends javax.swing.JFrame {
        
        if (result.equals("ok")){
            IfAppli.main(login);
+           this.log1.setLogin(login);
        }
        else
        {
@@ -146,7 +148,12 @@ public class Identification extends javax.swing.JFrame {
        }
        
     }//GEN-LAST:event_jButton1ActionPerformed
-
+    
+    public String getLogin(){
+        this.login = log1.toString();
+        return login;
+    }
+    
     /*Champ du Mot de Passe*/
     private void jPasswordField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordField1ActionPerformed
         // TODO add your handling code here:

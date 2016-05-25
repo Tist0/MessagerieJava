@@ -22,16 +22,19 @@ import java.util.logging.Logger;
  * @author 21507124
  */
 public class IfAppli extends javax.swing.JFrame {
-
     MyAbstractList model;
     private Component frame;
     private String login;
     private int idSalon;
+    //Identification login = new Identification();
+    
 
     /**
      * Creates new form jframe
      */
     public IfAppli() {
+        String loginUse;
+   
         model = new MyAbstractList();
         Personne p1 = new Personne("BUGE");
         Personne p2 = new Personne("BONOBO");
@@ -323,6 +326,7 @@ public class IfAppli extends javax.swing.JFrame {
         tfSendMessage.getText();
         tfSendMessage.setText("");
         
+       
         /*jLabel2.setVisible(false);
         jLabel2.setIcon(new javax.swing.ImageIcon("Z:\\21507056\\Documents\\babypanda - Copie.jpg")); // NOI18N
         jLabel2.setLocation(250, 15);
@@ -346,6 +350,8 @@ public class IfAppli extends javax.swing.JFrame {
     }//GEN-LAST:event_jComboBox2ActionPerformed
 
     private void btnActualiserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualiserActionPerformed
+        
+        
         
         /*Liste personnes*/
         /*------------------------------------------*/
@@ -399,8 +405,14 @@ public class IfAppli extends javax.swing.JFrame {
         mi.setEnabled(true);
 // Ajout de l'item à un menu 
         
-        
         mnuMembres.add(mi);
+        
+        
+        /*Affecte le login de la personne connecté au lable1 (au-dessus du bouton absent)*/
+        Identification login = new Identification();
+        String loginUse = login.log1.getLogin(); 
+        lblPseudo.setText(loginUse);
+        /*-----------------------------------------------------------------------------*/
     }//GEN-LAST:event_btnActualiserActionPerformed
 
     private void lstPersonnesComponentAdded(java.awt.event.ContainerEvent evt) {//GEN-FIRST:event_lstPersonnesComponentAdded
@@ -468,6 +480,7 @@ public class IfAppli extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new IfAppli().setVisible(true);
+                
             }
         });
 
