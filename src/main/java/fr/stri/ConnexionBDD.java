@@ -114,7 +114,7 @@ public class ConnexionBDD {
         } catch (SQLException ex) {
             Logger.getLogger(IfAppli.class.getName()).log(Level.SEVERE, null, ex);
         }
-            String recupMsg = "SELECT login,date_message,heure_message,contenu FROM Message, users WHERE idsalon='";
+            String recupMsg = "SELECT login_envoi,date_message,heure_message,contenu FROM Message WHERE  idsalon='";
             recupMsg = recupMsg.concat(numSalon);
             recupMsg = recupMsg.concat("';");
            // System.out.println(q);
