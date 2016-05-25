@@ -16,6 +16,7 @@ import javax.swing.JOptionPane;
 import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.management.timer.Timer;
 
 /**
  *
@@ -303,9 +304,11 @@ public class IfAppli extends javax.swing.JFrame {
         String horaire = (heure+":"+minute+":"+seconde);
         
         
-        /*Reste a mettre le login dynamique, comme l'id salon*/
+        /*Reste a mettre l'id salon dynamique*/
+        Identification login = new Identification();
+        String loginUse = login.log1.getLogin(); 
         System.err.println("TEST" + login);
-        String envoieMsg = "INSERT INTO Message(date_Message,heure_Message,contenu,login_envoi,idSalon) VALUES ('"+date+"','"+horaire+"','"+text+"','"+login+"',1);";
+        String envoieMsg = "INSERT INTO Message(date_Message,heure_Message,contenu,login_envoi,idSalon) VALUES ('"+date+"','"+horaire+"','"+text+"','"+loginUse+"',1);";
         System.err.println("TEST" + envoieMsg);
      
         ConnexionBDD cbdd = new ConnexionBDD();
@@ -318,7 +321,7 @@ public class IfAppli extends javax.swing.JFrame {
             jTextArea1.append(date);
         }*/
 
-        taMsgSalon.append(heure+ ":" +minute+"   "+text+"\n");
+        //taMsgSalon.append(heure+ ":" +minute+"   "+text+"\n");
 
         tfSendMessage.selectAll();
 
@@ -335,17 +338,22 @@ public class IfAppli extends javax.swing.JFrame {
 
     private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
         String statut = jComboBox2.getSelectedItem().toString();
+        
+        Identification login = new Identification();
+        String loginUse = login.log1.getLogin(); 
+        
+        
         if ("En ligne".equals(statut)){
-            /*String envoieMsg = "UPDATE "users" SET statut = '1' WHERE login = 'Albert';";
+            String envoieMsg = "UPDATE USERS SET statut = '1' WHERE login = '"+loginUse+"';";
         
             ConnexionBDD cbdd = new ConnexionBDD();
-            cbdd.insertSql(envoieMsg);*/
+            cbdd.insertSql(envoieMsg);
         }
         else{
-        /*String envoieMsg = "UPDATE "users" SET statut = '0' WHERE login = 'Albert';";
+            String envoieMsg = "UPDATE USERS SET statut = '0' WHERE login = '"+loginUse+"';";
         
             ConnexionBDD cbdd = new ConnexionBDD();
-            cbdd.insertSql(envoieMsg);*/
+            cbdd.insertSql(envoieMsg);
         }
     }//GEN-LAST:event_jComboBox2ActionPerformed
 
@@ -356,6 +364,8 @@ public class IfAppli extends javax.swing.JFrame {
         /*Liste personnes*/
         /*------------------------------------------*/
         model.clear();
+        taMsgSalon.setText("");
+        
         ConnexionBDD cbdd = new ConnexionBDD();
         ResultSet rs = cbdd.listeMembre();
         
@@ -406,7 +416,6 @@ public class IfAppli extends javax.swing.JFrame {
 // Ajout de l'item à un menu 
         
         mnuMembres.add(mi);
-        
         
         /*Affecte le login de la personne connecté au lable1 (au-dessus du bouton absent)*/
         Identification login = new Identification();

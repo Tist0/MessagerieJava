@@ -70,7 +70,7 @@ public class ConnexionBDD {
             Statement stmt = null;
 
             stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT login FROM Users;");
+            ResultSet rs = stmt.executeQuery("SELECT login FROM Users ORDER BY login ASC;");
 
             return rs;
             /*   while (rs.next()) {
