@@ -125,8 +125,9 @@ public class Identification extends javax.swing.JFrame {
         
         System.out.println(login + mdp);
         ConnexionBDD cbdd = new ConnexionBDD();
-        String result = cbdd.identificationSQL("Jean-Mimi", "stri");
-         System.out.println("test :"+ result);
+        cbdd.test();
+        //String result = cbdd.identificationSQL("Jean-Mimi", "stri");
+       //  System.out.println("test :"+ result);
          
     }//GEN-LAST:event_jButton1ActionPerformed
 
