@@ -367,7 +367,7 @@ public class IfAppli extends javax.swing.JFrame {
                 String dateH = result.getString("date_message");
                 String heureH = result.getString("heure_message");
                 String messH = result.getString("contenu");
-                taMsgSalon.append( loginH+dateH+heureH+messH+"\n");
+                taMsgSalon.append( loginH+" : "+messH+"\n"+"\t"+dateH+"\t"+heureH+"\n\n");
                 
                 
             }      
