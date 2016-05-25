@@ -360,8 +360,10 @@ public class IfAppli extends javax.swing.JFrame {
         /*------------------------------------------*/
         /*Récupère les messages de la BDD*/
         String numSalon = "1";
+        
         try {
             ResultSet result = cbdd.recupHistoriqueSQL(numSalon);
+            
             while (result.next()) {
                 String loginH = result.getString("login_envoi");
                 String dateH = result.getString("date_message");
