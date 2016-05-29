@@ -71,6 +71,7 @@ public class IfAppli extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        bindingGroup = new org.jdesktop.beansbinding.BindingGroup();
 
         jPanel1 = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
@@ -164,6 +165,10 @@ public class IfAppli extends javax.swing.JFrame {
         taMsgSalon.setEditable(false);
         taMsgSalon.setColumns(20);
         taMsgSalon.setRows(5);
+
+        org.jdesktop.beansbinding.Binding binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, btnActualiser, org.jdesktop.beansbinding.ELProperty.create("true"), taMsgSalon, org.jdesktop.beansbinding.BeanProperty.create("lineWrap"));
+        bindingGroup.addBinding(binding);
+
         jScrollPane2.setViewportView(taMsgSalon);
 
         mnuDescription.setText("Description");
@@ -292,6 +297,8 @@ public class IfAppli extends javax.swing.JFrame {
             .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 625, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
+        bindingGroup.bind();
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -395,7 +402,7 @@ public class IfAppli extends javax.swing.JFrame {
                 String dateH = result.getString("date_message");
                 String heureH = result.getString("heure_message");
                 String messH = result.getString("contenu");
-                taMsgSalon.append( loginH+" : "+messH+"\n"+"\t"+dateH+"\t"+heureH+"\n\n");
+                taMsgSalon.append(dateH+"\t"+heureH+"\n"+loginH+" : "+messH+"\n"+"\n\n");
                 
                 
             }      
@@ -544,5 +551,6 @@ public class IfAppli extends javax.swing.JFrame {
     private javax.swing.JMenu mnuMembres;
     private javax.swing.JTextArea taMsgSalon;
     private javax.swing.JTextField tfSendMessage;
+    private org.jdesktop.beansbinding.BindingGroup bindingGroup;
     // End of variables declaration//GEN-END:variables
 }
