@@ -47,6 +47,8 @@ public class Identification extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jTextArea1);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Tokupanda : connexion");
+        setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -69,12 +71,12 @@ public class Identification extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setText("LOGIN");
+        jLabel1.setText("Pseudo");
 
-        jLabel2.setText("MOT DE PASSE");
+        jLabel2.setText("Mot de passe");
 
         jLabel3.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel3.setIcon(new javax.swing.ImageIcon("D:\\Users\\Firtorios\\Pictures\\PandaMail.png")); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon("D:\\Users\\Firtorios\\Pictures\\TokuPanda\\PandaMail.png")); // NOI18N
         jLabel3.setFocusable(false);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -85,19 +87,19 @@ public class Identification extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(126, 126, 126)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel1)
                                 .addGap(70, 70, 70)
                                 .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel2)
-                                .addGap(29, 29, 29)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(200, 200, 200)
                         .addComponent(jButton1)))
-                .addContainerGap(142, Short.MAX_VALUE))
+                .addContainerGap(138, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jLabel3)
@@ -156,6 +158,7 @@ public class Identification extends javax.swing.JFrame {
        if (result.equals("ok")){
            IfAppli.main(login);
            this.log1.setLogin(login);
+           dispose();
        }
        else
        {

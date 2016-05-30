@@ -1,5 +1,4 @@
 /*
-
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
@@ -26,9 +25,6 @@ public class IfAppli extends javax.swing.JFrame {
     private Component frame;
     private String login;
     private int idSalon;
-    //Identification login = new Identification();
-    
-    
 
     /**
      * Creates new form jframe
@@ -37,10 +33,6 @@ public class IfAppli extends javax.swing.JFrame {
         String loginUse;
    
         model = new MyAbstractList();
-        Personne p1 = new Personne("BUGE");
-        Personne p2 = new Personne("BONOBO");
-        model.add(p1);
-        model.add(p2);
         initComponents();
         
         actualiserListeSalon();
@@ -53,27 +45,8 @@ public class IfAppli extends javax.swing.JFrame {
         }           
         });
         tMessage.start();
-           
-        
-        Color bleuAzur = new Color(245, 250, 250);
-
-        /**
-         * **
-         */
-        /**
-         * **
-         */
-        jInternalFrame1.setBorder(javax.swing.BorderFactory.createEtchedBorder(java.awt.Color.white, null));
-        jInternalFrame1.getContentPane().setBackground(Color.WHITE);
-        jPanel1.setBackground(bleuAzur);
-        //.setBackground(Color.WHITE);
-        jMenuBar1.setBackground(Color.WHITE);
-        //jPanel4.setBackground(Color.WHITE);
-        //jPanel5.setBackground(Color.WHITE);
-        jPanel6.setBackground(Color.WHITE);
-        taMsgSalon.setBackground(Color.WHITE);
-        jPanel7.setBackground(bleuAzur);
-
+        /*Applique un jeu de couleur*/   
+        colorisation();
     }
 
     /**
@@ -104,10 +77,13 @@ public class IfAppli extends javax.swing.JFrame {
         jComboBox1 = new javax.swing.JComboBox();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Tokupanda");
+        setIconImages(null);
         setResizable(false);
+
+        jPanel1.setName("Tokupanda"); // NOI18N
 
         jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(0, 102, 153))); // NOI18N
 
@@ -124,7 +100,9 @@ public class IfAppli extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(lstPersonnes);
 
-        lblPseudo.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        lblPseudo.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        lblPseudo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblPseudo.setIcon(new javax.swing.ImageIcon("D:\\Users\\Firtorios\\Pictures\\TokuPanda\\en ligne.png")); // NOI18N
         lblPseudo.setText("jLabel1");
 
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "En ligne", "Absent" }));
@@ -138,37 +116,38 @@ public class IfAppli extends javax.swing.JFrame {
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(lblPseudo, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(61, 61, 61))
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel7Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel7Layout.createSequentialGroup()
-                        .addGap(40, 40, 40)
-                        .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel7Layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel7Layout.createSequentialGroup()
+                                .addGap(40, 40, 40)
+                                .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(lblPseudo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
                 .addGap(29, 29, 29)
-                .addComponent(lblPseudo)
+                .addComponent(lblPseudo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
+                .addGap(15, 15, 15)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 490, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(181, 181, 181))
         );
 
         jInternalFrame1.setBackground(new java.awt.Color(255, 255, 255));
-        jInternalFrame1.setBorder(null);
+        jInternalFrame1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jInternalFrame1.setForeground(new java.awt.Color(255, 255, 255));
         jInternalFrame1.setTitle("Projet Super Panda");
         jInternalFrame1.setToolTipText("");
+        jInternalFrame1.setFocusable(false);
         jInternalFrame1.setVisible(true);
 
         tfSendMessage.addActionListener(new java.awt.event.ActionListener() {
@@ -185,6 +164,9 @@ public class IfAppli extends javax.swing.JFrame {
         bindingGroup.addBinding(binding);
 
         jScrollPane2.setViewportView(taMsgSalon);
+
+        jMenuBar1.setBackground(new java.awt.Color(255, 255, 255));
+        jMenuBar1.setBorderPainted(false);
 
         mnuDescription.setText("Description");
         mnuDescription.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -219,17 +201,17 @@ public class IfAppli extends javax.swing.JFrame {
             .addGroup(jInternalFrame1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 545, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tfSendMessage, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 545, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 545, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tfSendMessage, javax.swing.GroupLayout.PREFERRED_SIZE, 545, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
         jInternalFrame1Layout.setVerticalGroup(
             jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jInternalFrame1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 374, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap()
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 352, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(tfSendMessage, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(tfSendMessage, javax.swing.GroupLayout.DEFAULT_SIZE, 42, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -240,14 +222,7 @@ public class IfAppli extends javax.swing.JFrame {
             }
         });
 
-        jLabel2.setText("jLabel2");
-
-        jButton1.setText("jButton1");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
+        jLabel2.setIcon(new javax.swing.ImageIcon("D:\\Users\\Firtorios\\Pictures\\TokuPanda\\Croquis-panda-bannieredd - Copie.jpg")); // NOI18N
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -256,36 +231,30 @@ public class IfAppli extends javax.swing.JFrame {
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jInternalFrame1)
-                    .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
-                        .addComponent(jButton1)
-                        .addGap(194, 194, 194))
-                    .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addGap(128, 128, 128)
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel2)))
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jInternalFrame1)
+                        .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel6Layout.createSequentialGroup()
+                            .addGap(128, 128, 128)
+                            .addComponent(jLabel1)))
+                    .addComponent(jLabel2))
                 .addGap(20, 20, 20))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addGroup(jPanel6Layout.createSequentialGroup()
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton1))
-                    .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addGap(18, 18, 18)
+                .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jInternalFrame1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(183, 183, 183))
+                .addGap(647, 647, 647))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -320,7 +289,8 @@ public class IfAppli extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void tfSendMessageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfSendMessageActionPerformed
-        String text = tfSendMessage.getText();
+        String texte = tfSendMessage.getText();
+        String text = texte.replace("\'","\''");
         
         Calendar cal = Calendar.getInstance();
         int seconde = cal.get(Calendar.SECOND);
@@ -331,7 +301,6 @@ public class IfAppli extends javax.swing.JFrame {
         int annee = cal.get(Calendar.YEAR);
         String date = (jour+"/"+mois+"/"+annee);
         String horaire = (heure+":"+minute+":"+seconde);
-        
         
         /*Reste a mettre l'id salon dynamique*/
         Identification login = new Identification();
@@ -357,12 +326,6 @@ public class IfAppli extends javax.swing.JFrame {
         tfSendMessage.setCaretPosition(tfSendMessage.getDocument().getLength());
         tfSendMessage.getText();
         tfSendMessage.setText("");
-        
-       
-        /*jLabel2.setVisible(false);
-        jLabel2.setIcon(new javax.swing.ImageIcon("Z:\\21507056\\Documents\\babypanda - Copie.jpg")); // NOI18N
-        jLabel2.setLocation(250, 15);
-       */ 
     }//GEN-LAST:event_tfSendMessageActionPerformed
 
     private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
@@ -374,15 +337,18 @@ public class IfAppli extends javax.swing.JFrame {
         
         if ("En ligne".equals(statut)){
             String envoieMsg = "UPDATE USERS SET statut = '1' WHERE login = '"+loginUse+"';";
-        
+            
             ConnexionBDD cbdd = new ConnexionBDD();
             cbdd.insertSql(envoieMsg);
+            lblPseudo.setIcon(new javax.swing.ImageIcon("D:\\Users\\Firtorios\\Pictures\\TokuPanda\\en ligne.png")); // NOI18N
+
         }
         else{
             String envoieMsg = "UPDATE USERS SET statut = '0' WHERE login = '"+loginUse+"';";
         
             ConnexionBDD cbdd = new ConnexionBDD();
             cbdd.insertSql(envoieMsg);
+            lblPseudo.setIcon(new javax.swing.ImageIcon("D:\\Users\\Firtorios\\Pictures\\TokuPanda\\absent.png")); // NOI18N
         }
     }//GEN-LAST:event_jComboBox2ActionPerformed
 
@@ -404,7 +370,7 @@ public class IfAppli extends javax.swing.JFrame {
     }//GEN-LAST:event_mnuDescriptionMouseClicked
 
     private void lstPersonnesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lstPersonnesMouseClicked
-         String personSelect = (lstPersonnes.getSelectedValue().toString());
+        String personSelect = (lstPersonnes.getSelectedValue().toString());
 
         Identification login = new Identification();
         String loginUse = login.log1.getLogin(); 
@@ -414,41 +380,16 @@ public class IfAppli extends javax.swing.JFrame {
             evt.consume();
             System.out.println(personSelect);
             
-        ConnexionBDD cbdd = new ConnexionBDD();
-        String salonPriveeExist = cbdd.idSalonPrivee(loginUse+personSelect);
-            
-        }
-        
+            ConnexionBDD cbdd = new ConnexionBDD();
+            String salonPriveeExist = cbdd.idSalonPrivee(loginUse+personSelect);            
+        }        
     }//GEN-LAST:event_lstPersonnesMouseClicked
 
     private void jComboBox1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox1ItemStateChanged
-        
         //String titreSalon = jComboBox1.getSelectedItem().toString();
         String titreSalon = jComboBox1.getSelectedItem().toString(); 
-        jInternalFrame1.setTitle(titreSalon);
-        
+        jInternalFrame1.setTitle(titreSalon);       
     }//GEN-LAST:event_jComboBox1ItemStateChanged
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       
-        jComboBox1.removeAllItems();
-        
-        ConnexionBDD salonBD = new ConnexionBDD();
-        ResultSet rsSalon = salonBD.listeSalon();
-        
-        try {
-            while (rsSalon.next()) {
-                String salon = rsSalon.getString("nom_salon");
-                SalonDiscution q = new SalonDiscution(salon);
-                
-               
-                    jComboBox1.addItem(q);
-
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(IfAppli.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -459,23 +400,7 @@ public class IfAppli extends javax.swing.JFrame {
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-       /* Calendar cal = Calendar.getInstance();
-        long startTime = cal.get(Calendar.SECOND);
-        long elapsedTime = 0;
-        int nombre = 0;
-        
-
-        while (elapsedTime < 1) {
-            Calendar cala = Calendar.getInstance();
-            System.out.println(nombre);
-            int mili = cala.get(Calendar.SECOND);
-            elapsedTime = mili - startTime;
-            nombre++;
-        }*/
-
-        
-        
+         */           
         ConnexionBDD cbdd = new ConnexionBDD();
         cbdd.test();
 
@@ -502,14 +427,11 @@ public class IfAppli extends javax.swing.JFrame {
  /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new IfAppli().setVisible(true);
-                
+                new IfAppli().setVisible(true);                
             }
         });
-
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
     private javax.swing.JComboBox jComboBox1;
     private javax.swing.JComboBox jComboBox2;
     private javax.swing.JInternalFrame jInternalFrame1;
@@ -533,18 +455,14 @@ public class IfAppli extends javax.swing.JFrame {
 
 public void actualiserListeSalon() {
 
-        
         ConnexionBDD salonBD = new ConnexionBDD();
         ResultSet rsSalon = salonBD.listeSalon();
         
         try {
             while (rsSalon.next()) {
                 String salon = rsSalon.getString("nom_salon");
-                SalonDiscution q = new SalonDiscution(salon);
-                
-               
-                    jComboBox1.addItem(q);
-
+                SalonDiscution q = new SalonDiscution(salon);                             
+                jComboBox1.addItem(q);
             }
         } catch (SQLException ex) {
             Logger.getLogger(IfAppli.class.getName()).log(Level.SEVERE, null, ex);
@@ -555,7 +473,6 @@ public void actualiser() {
      /*Clear/Reset avant d'actualiser*/    
         model.clear();
         taMsgSalon.setText("");
-        
         
         /*-----------------------------------------------*/
         /*ConnexionBDD salonBD = new ConnexionBDD();
@@ -575,16 +492,14 @@ public void actualiser() {
         */
         
         /*Liste personnes*/
-        /*------------------------------------------*/
-        
+        /*------------------------------------------*/        
         ConnexionBDD cbdd = new ConnexionBDD();
         ResultSet rs = cbdd.listeMembre();
         
         try {
             while (rs.next()) {
                 String login = rs.getString("login");
-                Personne p = new Personne(login);
-                
+                Personne p = new Personne(login);                
                 model.add(p);
             }
         } catch (SQLException ex) {
@@ -597,8 +512,6 @@ public void actualiser() {
         ConnexionBDD recupIdSalon = new ConnexionBDD();
         String numSalon = recupIdSalon.getIdSalon(titreSalon);
         
-        /*String numSalon = "1";*/
-        
         try {
             ResultSet result = cbdd.recupHistoriqueSQL(numSalon);
             
@@ -606,39 +519,47 @@ public void actualiser() {
                 String loginH = result.getString("login_envoi");
                 String dateH = result.getString("date_message");
                 String heureH = result.getString("heure_message");
+                String heureHE = heureH.substring(0,5);
                 String messH = result.getString("contenu");
-                taMsgSalon.append(dateH+"\t"+heureH+"\n"+loginH+" : "+messH+"\n"+"\n\n");
-                
-                
+                taMsgSalon.append(dateH+"\t"+heureHE+"\n"+loginH+" : "+messH+"\n"+"\n\n");
             }      
-            
         } catch (SQLException ex) {
             Logger.getLogger(IfAppli.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
+        }        
         /*Messagerie*/
             /*------------------------------------------*/
             /*Reste a mettre le login dynamique, comme l'id salon*/
-       
-     
+            
         /*------------------------------------------*/
-
         JMenuItem mi = new JMenuItem();
 
-// affectation du texte
+        // affectation du texte
         mi.setText("le texte");
 
-// l'item de menu est actif
+        // l'item de menu est actif
         mi.setEnabled(true);
-// Ajout de l'item à un menu 
+        // Ajout de l'item à un menu 
         
         mnuMembres.add(mi);
         
         /*Affecte le login de la personne connecté au lable1 (au-dessus du bouton absent)*/
         Identification login = new Identification();
         String loginUse = login.log1.getLogin(); 
-        lblPseudo.setText(loginUse);
-    
+        lblPseudo.setText(loginUse);    
 }
 
+    private void colorisation() {
+        Color bleuAzur = new Color(245, 250, 250);
+
+        jInternalFrame1.setBorder(javax.swing.BorderFactory.createEtchedBorder(java.awt.Color.white, null));
+        jInternalFrame1.getContentPane().setBackground(Color.WHITE);
+        jPanel1.setBackground(bleuAzur);
+        //.setBackground(Color.WHITE);
+        jMenuBar1.setBackground(Color.WHITE);
+        //jPanel4.setBackground(Color.WHITE);
+        //jPanel5.setBackground(Color.WHITE);
+        jPanel6.setBackground(Color.WHITE);
+        taMsgSalon.setBackground(Color.WHITE);
+        jPanel7.setBackground(bleuAzur);
+    }
 }
