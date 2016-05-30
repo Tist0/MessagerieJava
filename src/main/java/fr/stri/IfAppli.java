@@ -9,14 +9,13 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 import java.util.Calendar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.management.timer.Timer;
+import javax.swing.Timer;
 
 /**
  *
@@ -28,6 +27,7 @@ public class IfAppli extends javax.swing.JFrame {
     private String login;
     private int idSalon;
     //Identification login = new Identification();
+    
     
 
     /**
@@ -42,6 +42,19 @@ public class IfAppli extends javax.swing.JFrame {
         model.add(p1);
         model.add(p2);
         initComponents();
+        
+        actualiserListeSalon();
+        actualiser();
+        
+        Timer tMessage = new Timer(2000, new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            actualiser();
+        }           
+        });
+        tMessage.start();
+           
+        
         Color bleuAzur = new Color(245, 250, 250);
 
         /**
@@ -89,12 +102,14 @@ public class IfAppli extends javax.swing.JFrame {
         mnuMembres = new javax.swing.JMenu();
         mnuGestion = new javax.swing.JMenu();
         jComboBox1 = new javax.swing.JComboBox();
-        btnActualiser = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
+
+        jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(0, 102, 153))); // NOI18N
 
         lstPersonnes.setModel(model);
         lstPersonnes.addContainerListener(new java.awt.event.ContainerAdapter() {
@@ -166,7 +181,7 @@ public class IfAppli extends javax.swing.JFrame {
         taMsgSalon.setColumns(20);
         taMsgSalon.setRows(5);
 
-        org.jdesktop.beansbinding.Binding binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, btnActualiser, org.jdesktop.beansbinding.ELProperty.create("true"), taMsgSalon, org.jdesktop.beansbinding.BeanProperty.create("lineWrap"));
+        org.jdesktop.beansbinding.Binding binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, new javax.swing.JButton(), org.jdesktop.beansbinding.ELProperty.create("true"), taMsgSalon, org.jdesktop.beansbinding.BeanProperty.create("lineWrap"));
         bindingGroup.addBinding(binding);
 
         jScrollPane2.setViewportView(taMsgSalon);
@@ -218,21 +233,21 @@ public class IfAppli extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { }));
         jComboBox1.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 jComboBox1ItemStateChanged(evt);
             }
         });
 
-        btnActualiser.setText("Actualiser");
-        btnActualiser.addActionListener(new java.awt.event.ActionListener() {
+        jLabel2.setText("jLabel2");
+
+        jButton1.setText("jButton1");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnActualiserActionPerformed(evt);
+                jButton1ActionPerformed(evt);
             }
         });
-
-        jLabel2.setText("jLabel2");
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -244,7 +259,9 @@ public class IfAppli extends javax.swing.JFrame {
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jInternalFrame1)
                     .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnActualiser)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
+                        .addComponent(jButton1)
+                        .addGap(194, 194, 194))
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addGap(128, 128, 128)
                         .addComponent(jLabel1)
@@ -260,7 +277,7 @@ public class IfAppli extends javax.swing.JFrame {
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnActualiser))
+                        .addComponent(jButton1))
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addGap(0, 0, Short.MAX_VALUE)))
@@ -369,11 +386,193 @@ public class IfAppli extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jComboBox2ActionPerformed
 
-    private void btnActualiserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualiserActionPerformed
-        /*Clear/Reset avant d'actualiser*/    
+    private void lstPersonnesComponentAdded(java.awt.event.ContainerEvent evt) {//GEN-FIRST:event_lstPersonnesComponentAdded
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lstPersonnesComponentAdded
+
+    private void mnuGestionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuGestionActionPerformed
+    }//GEN-LAST:event_mnuGestionActionPerformed
+
+    private void mnuDescriptionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuDescriptionActionPerformed
+    }//GEN-LAST:event_mnuDescriptionActionPerformed
+
+    private void mnuDescriptionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mnuDescriptionMouseClicked
+        /*########*/
+        ConnexionBDD cbdd = new ConnexionBDD();
+        String description = cbdd.descriptionSQL("LES-TUEURS");
+        JOptionPane.showMessageDialog(taMsgSalon, description);
+    }//GEN-LAST:event_mnuDescriptionMouseClicked
+
+    private void lstPersonnesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lstPersonnesMouseClicked
+         String personSelect = (lstPersonnes.getSelectedValue().toString());
+
+        Identification login = new Identification();
+        String loginUse = login.log1.getLogin(); 
+        
+        //jComboBox2.toString();
+        if (evt.getClickCount() == 2 && !evt.isConsumed()) {
+            evt.consume();
+            System.out.println(personSelect);
+            
+        ConnexionBDD cbdd = new ConnexionBDD();
+        String salonPriveeExist = cbdd.idSalonPrivee(loginUse+personSelect);
+            
+        }
+        
+    }//GEN-LAST:event_lstPersonnesMouseClicked
+
+    private void jComboBox1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox1ItemStateChanged
+        
+        //String titreSalon = jComboBox1.getSelectedItem().toString();
+        String titreSalon = jComboBox1.getSelectedItem().toString(); 
+        jInternalFrame1.setTitle(titreSalon);
+        
+    }//GEN-LAST:event_jComboBox1ItemStateChanged
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+       
+        jComboBox1.removeAllItems();
+        
+        ConnexionBDD salonBD = new ConnexionBDD();
+        ResultSet rsSalon = salonBD.listeSalon();
+        
+        try {
+            while (rsSalon.next()) {
+                String salon = rsSalon.getString("nom_salon");
+                SalonDiscution q = new SalonDiscution(salon);
+                
+               
+                    jComboBox1.addItem(q);
+
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(IfAppli.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String login) {
+        
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+       /* Calendar cal = Calendar.getInstance();
+        long startTime = cal.get(Calendar.SECOND);
+        long elapsedTime = 0;
+        int nombre = 0;
+        
+
+        while (elapsedTime < 1) {
+            Calendar cala = Calendar.getInstance();
+            System.out.println(nombre);
+            int mili = cala.get(Calendar.SECOND);
+            elapsedTime = mili - startTime;
+            nombre++;
+        }*/
+
+        
+        
+        ConnexionBDD cbdd = new ConnexionBDD();
+        cbdd.test();
+
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(IfAppli.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(IfAppli.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(IfAppli.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(IfAppli.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+
+        /*--------------------------------------------------*/
+ /*----------------------------------------------------------*/
+ /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new IfAppli().setVisible(true);
+                
+            }
+        });
+
+    }
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
+    private javax.swing.JComboBox jComboBox1;
+    private javax.swing.JComboBox jComboBox2;
+    private javax.swing.JInternalFrame jInternalFrame1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanel7;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JLabel lblPseudo;
+    private javax.swing.JList lstPersonnes;
+    private javax.swing.JMenu mnuDescription;
+    private javax.swing.JMenu mnuGestion;
+    private javax.swing.JMenu mnuMembres;
+    private javax.swing.JTextArea taMsgSalon;
+    private javax.swing.JTextField tfSendMessage;
+    private org.jdesktop.beansbinding.BindingGroup bindingGroup;
+    // End of variables declaration//GEN-END:variables
+
+public void actualiserListeSalon() {
+
+        
+        ConnexionBDD salonBD = new ConnexionBDD();
+        ResultSet rsSalon = salonBD.listeSalon();
+        
+        try {
+            while (rsSalon.next()) {
+                String salon = rsSalon.getString("nom_salon");
+                SalonDiscution q = new SalonDiscution(salon);
+                
+               
+                    jComboBox1.addItem(q);
+
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(IfAppli.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+public void actualiser() {
+     /*Clear/Reset avant d'actualiser*/    
         model.clear();
         taMsgSalon.setText("");
-        jComboBox1.removeAllItems();
+        
+        
+        /*-----------------------------------------------*/
+        /*ConnexionBDD salonBD = new ConnexionBDD();
+        ResultSet rsSalon = salonBD.listeSalon();
+        
+        try {
+            while (rsSalon.next()) {
+                String salon = rsSalon.getString("nom_salon");
+                SalonDiscution q = new SalonDiscution(salon);
+                
+                    System.out.println("\n\n\n\n"+q);
+                    jComboBox1.addItem(q);               
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(IfAppli.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        */
         
         /*Liste personnes*/
         /*------------------------------------------*/
@@ -385,6 +584,7 @@ public class IfAppli extends javax.swing.JFrame {
             while (rs.next()) {
                 String login = rs.getString("login");
                 Personne p = new Personne(login);
+                
                 model.add(p);
             }
         } catch (SQLException ex) {
@@ -392,7 +592,12 @@ public class IfAppli extends javax.swing.JFrame {
         }
         /*------------------------------------------*/
         /*Récupère les messages de la BDD*/
-        String numSalon = "1";
+        String titreSalon = jComboBox1.getSelectedItem().toString(); 
+        
+        ConnexionBDD recupIdSalon = new ConnexionBDD();
+        String numSalon = recupIdSalon.getIdSalon(titreSalon);
+        
+        /*String numSalon = "1";*/
         
         try {
             ResultSet result = cbdd.recupHistoriqueSQL(numSalon);
@@ -433,124 +638,7 @@ public class IfAppli extends javax.swing.JFrame {
         Identification login = new Identification();
         String loginUse = login.log1.getLogin(); 
         lblPseudo.setText(loginUse);
-        /*-----------------------------------------------------------------------------*/
-        
-        /*-----------------------------------------------*/
-        ConnexionBDD salonBD = new ConnexionBDD();
-        ResultSet rsSalon = salonBD.listeSalon();
-        
-        try {
-            while (rsSalon.next()) {
-                String salon = rsSalon.getString("nom_salon");
-                SalonDiscution q = new SalonDiscution(salon);
+    
+}
 
-                System.out.println(q.toString());
-                jComboBox1.addItem(q);
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(IfAppli.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        /*----------------------------------------------*/
-        
-    }//GEN-LAST:event_btnActualiserActionPerformed
-
-    private void lstPersonnesComponentAdded(java.awt.event.ContainerEvent evt) {//GEN-FIRST:event_lstPersonnesComponentAdded
-        // TODO add your handling code here:
-    }//GEN-LAST:event_lstPersonnesComponentAdded
-
-    private void mnuGestionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuGestionActionPerformed
-    }//GEN-LAST:event_mnuGestionActionPerformed
-
-    private void mnuDescriptionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuDescriptionActionPerformed
-    }//GEN-LAST:event_mnuDescriptionActionPerformed
-
-    private void mnuDescriptionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mnuDescriptionMouseClicked
-        /*########*/
-        ConnexionBDD cbdd = new ConnexionBDD();
-        String description = cbdd.descriptionSQL("LES-TUEURS");
-        JOptionPane.showMessageDialog(taMsgSalon, description);
-    }//GEN-LAST:event_mnuDescriptionMouseClicked
-
-    private void lstPersonnesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lstPersonnesMouseClicked
-        String personSelect = (lstPersonnes.getSelectedValue().toString());
-
-        //jComboBox2.toString();
-        if (evt.getClickCount() == 2 && !evt.isConsumed()) {
-            evt.consume();
-            System.out.println(personSelect);
-        }
-    }//GEN-LAST:event_lstPersonnesMouseClicked
-
-    private void jComboBox1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox1ItemStateChanged
-        
-        //String titreSalon = jComboBox1.getSelectedItem().toString();
-        /*String titreSalon = jComboBox1.getSelectedItem().toString(); 
-        jInternalFrame1.setTitle(titreSalon);*/
-    }//GEN-LAST:event_jComboBox1ItemStateChanged
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String login) {
-        
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-
-        ConnexionBDD cbdd = new ConnexionBDD();
-        cbdd.test();
-
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(IfAppli.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(IfAppli.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(IfAppli.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(IfAppli.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /*--------------------------------------------------*/
- /*----------------------------------------------------------*/
- /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new IfAppli().setVisible(true);
-                
-            }
-        });
-
-    }
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnActualiser;
-    private javax.swing.JComboBox jComboBox1;
-    private javax.swing.JComboBox jComboBox2;
-    private javax.swing.JInternalFrame jInternalFrame1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel6;
-    private javax.swing.JPanel jPanel7;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JLabel lblPseudo;
-    private javax.swing.JList lstPersonnes;
-    private javax.swing.JMenu mnuDescription;
-    private javax.swing.JMenu mnuGestion;
-    private javax.swing.JMenu mnuMembres;
-    private javax.swing.JTextArea taMsgSalon;
-    private javax.swing.JTextField tfSendMessage;
-    private org.jdesktop.beansbinding.BindingGroup bindingGroup;
-    // End of variables declaration//GEN-END:variables
 }

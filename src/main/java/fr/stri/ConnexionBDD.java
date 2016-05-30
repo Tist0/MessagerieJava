@@ -172,6 +172,97 @@ public class ConnexionBDD {
         }
         
         
+        public String getIdSalon(String nomSalon)
+        {
+            String idSalon = null;        
+        try {
+            Connection conn = connexion();
+            Statement stmt = null;
+            stmt = conn.createStatement();
+            String q = "SELECT idsalon FROM Salon Where nom_salon='";
+            q = q.concat(nomSalon);
+            q = q.concat("';");
+           // System.out.println(q);
+            ResultSet rs = stmt.executeQuery(q);
+            
+             while (rs.next()) {
+            idSalon = rs.getString("idsalon");
+            //System.out.println(descri);
+            
+             }
+                     
+            return idSalon;
+            
+        } 
+        catch (SQLException ex) {
+            Logger.getLogger(ConnexionBDD.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+        
+        }
+        
+        
+        
+        public String idSalonPrivee(String nomSalon)
+        {
+            String idSalon = null;        
+        try {
+            Connection conn = connexion();
+            Statement stmt = null;
+            stmt = conn.createStatement();
+            String q = "SELECT id_salon FROM Salon Where nom_salon='";
+            q = q.concat(nomSalon);
+            q = q.concat("';");
+           // System.out.println(q);
+            ResultSet rs = stmt.executeQuery(q);
+            
+             while (rs.next()) {
+            idSalon = rs.getString("id_salon");
+            //System.out.println(descri);
+            
+             }
+                     
+            return idSalon;
+            
+        } 
+        catch (SQLException ex) {
+            Logger.getLogger(ConnexionBDD.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+        
+        } 
+        
+       /* public String SalonPrivee(String nomSalon)
+        {
+            String SalonPriveeExist = null;        
+                            System.out.println("\n\n\n\nLancement salonprivee\n\n\n\n");
+            Connection conn = connexion();
+            Statement stmt = null;
+        try {
+            stmt = conn.createStatement();
+                             System.out.println("\n\n\n\nLancement requete\n\n\n\n");
+            String q = "SELECT nom_salon FROM Salon Where nom_salon='";
+            q = q.concat(nomSalon);
+            q = q.concat("';");
+            System.out.println(q);
+            ResultSet rs = stmt.executeQuery(q);
+            
+                System.out.println("\n\n\n\nSalonPriveeExist = à null\n\n\n\n");
+            while (rs.next()) {
+            SalonPriveeExist = rs.getString("nom_salon");
+            
+                             System.out.println("\n\n\n\nSalonPriveeExist = "+SalonPriveeExist+"\n\n\n\n");
+            
+             }
+             if ("null".equals(SalonPriveeExist)){
+                 System.out.println("\n\n\n\nSalonPriveeExist = à null\n\n\n\n");
+             }
+            return SalonPriveeExist;
+                     } catch (SQLException ex) {
+            Logger.getLogger(ConnexionBDD.class.getName()).log(Level.SEVERE, null, ex);
+        }    
+        return SalonPriveeExist;
+        } */
         
         
         public String identificationSQL(String login,String mdp)
