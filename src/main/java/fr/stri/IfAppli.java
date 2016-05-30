@@ -102,7 +102,7 @@ public class IfAppli extends javax.swing.JFrame {
 
         lblPseudo.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         lblPseudo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblPseudo.setIcon(new javax.swing.ImageIcon("D:\\Users\\Firtorios\\Pictures\\TokuPanda\\en ligne.png")); // NOI18N
+        lblPseudo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/en ligne.png"))); // NOI18N
         lblPseudo.setText("jLabel1");
 
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "En ligne", "Absent" }));
@@ -222,7 +222,7 @@ public class IfAppli extends javax.swing.JFrame {
             }
         });
 
-        jLabel2.setIcon(new javax.swing.ImageIcon("D:\\Users\\Firtorios\\Pictures\\TokuPanda\\Croquis-panda-bannieredd - Copie.jpg")); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Croquis-panda-bannieredd - Copie.jpg"))); // NOI18N
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -340,16 +340,14 @@ public class IfAppli extends javax.swing.JFrame {
             
             ConnexionBDD cbdd = new ConnexionBDD();
             cbdd.insertSql(envoieMsg);
-            lblPseudo.setIcon(new javax.swing.ImageIcon("D:\\Users\\Firtorios\\Pictures\\TokuPanda\\en ligne.png")); // NOI18N
-
+            lblPseudo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/en ligne.png")));
         }
         else{
             String envoieMsg = "UPDATE USERS SET statut = '0' WHERE login = '"+loginUse+"';";
         
             ConnexionBDD cbdd = new ConnexionBDD();
             cbdd.insertSql(envoieMsg);
-            lblPseudo.setIcon(new javax.swing.ImageIcon("D:\\Users\\Firtorios\\Pictures\\TokuPanda\\absent.png")); // NOI18N
-        }
+            lblPseudo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/absent.png")));        }
     }//GEN-LAST:event_jComboBox2ActionPerformed
 
     private void lstPersonnesComponentAdded(java.awt.event.ContainerEvent evt) {//GEN-FIRST:event_lstPersonnesComponentAdded
@@ -365,7 +363,8 @@ public class IfAppli extends javax.swing.JFrame {
     private void mnuDescriptionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mnuDescriptionMouseClicked
         /*########*/
         ConnexionBDD cbdd = new ConnexionBDD();
-        String description = cbdd.descriptionSQL("LES-TUEURS");
+        String selection = jComboBox1.getSelectedItem().toString();
+        String description = cbdd.descriptionSQL(selection);
         JOptionPane.showMessageDialog(taMsgSalon, description);
     }//GEN-LAST:event_mnuDescriptionMouseClicked
 

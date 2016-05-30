@@ -32,7 +32,7 @@ CREATE TABLE Users(
 CREATE TABLE Salon(
 	idSalon   SERIAL NOT NULL ,
 	nom_Salon VARCHAR (25)  ,
-        description_salon VARCHAR (50)  ,
+        description_salon VARCHAR (50),
 	idAdmin   INT   ,
 	CONSTRAINT prk_constraint_Salon PRIMARY KEY (idSalon)
 );

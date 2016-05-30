@@ -182,7 +182,7 @@
                     </Property>
                     <Property name="horizontalAlignment" type="int" value="0"/>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="2" name="D:\Users\Firtorios\Pictures\TokuPanda\en ligne.png"/>
+                      <Image iconType="3" name="/en ligne.png"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="jLabel1"/>
                   </Properties>
@@ -320,7 +320,7 @@
             <Component class="javax.swing.JLabel" name="jLabel2">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="2" name="D:\Users\Firtorios\Pictures\TokuPanda\Croquis-panda-bannieredd - Copie.jpg"/>
+                  <Image iconType="3" name="/Croquis-panda-bannieredd - Copie.jpg"/>
                 </Property>
               </Properties>
             </Component>

@@ -149,7 +149,7 @@
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="D:\Users\Firtorios\Pictures\TokuPanda\PandaMail.png"/>
+              <Image iconType="3" name="/PandaMail.png"/>
             </Property>
             <Property name="focusable" type="boolean" value="false"/>
           </Properties>

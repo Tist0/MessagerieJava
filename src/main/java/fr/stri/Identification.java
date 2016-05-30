@@ -76,7 +76,7 @@ public class Identification extends javax.swing.JFrame {
         jLabel2.setText("Mot de passe");
 
         jLabel3.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel3.setIcon(new javax.swing.ImageIcon("D:\\Users\\Firtorios\\Pictures\\TokuPanda\\PandaMail.png")); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PandaMail.png"))); // NOI18N
         jLabel3.setFocusable(false);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
