@@ -150,6 +150,18 @@ public class IfAppli extends javax.swing.JFrame {
         jInternalFrame1.setFocusable(false);
         jInternalFrame1.setVisible(true);
 
+        tfSendMessage.setForeground(new java.awt.Color(153, 153, 153));
+        tfSendMessage.setText("Entrer un message ici");
+        tfSendMessage.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                tfSendMessageFocusLost(evt);
+            }
+        });
+        tfSendMessage.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tfSendMessageMouseClicked(evt);
+            }
+        });
         tfSendMessage.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tfSendMessageActionPerformed(evt);
@@ -325,7 +337,7 @@ public class IfAppli extends javax.swing.JFrame {
 
         tfSendMessage.setCaretPosition(tfSendMessage.getDocument().getLength());
         tfSendMessage.getText();
-        tfSendMessage.setText("");
+        tfSendMessage.setText(""); 
     }//GEN-LAST:event_tfSendMessageActionPerformed
 
     private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
@@ -389,6 +401,16 @@ public class IfAppli extends javax.swing.JFrame {
         String titreSalon = jComboBox1.getSelectedItem().toString(); 
         jInternalFrame1.setTitle(titreSalon);       
     }//GEN-LAST:event_jComboBox1ItemStateChanged
+
+    private void tfSendMessageMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tfSendMessageMouseClicked
+        tfSendMessage.setText("");
+        tfSendMessage.setForeground(new java.awt.Color(0, 0, 0));        // TODO add your handling code here:
+    }//GEN-LAST:event_tfSendMessageMouseClicked
+
+    private void tfSendMessageFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_tfSendMessageFocusLost
+        tfSendMessage.setForeground(new java.awt.Color(153, 153, 153));
+        tfSendMessage.setText("Entrer un message ici");  
+    }//GEN-LAST:event_tfSendMessageFocusLost
 
     /**
      * @param args the command line arguments
