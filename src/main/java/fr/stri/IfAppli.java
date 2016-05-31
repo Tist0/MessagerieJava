@@ -469,7 +469,8 @@ public class IfAppli extends javax.swing.JFrame {
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */           
         ConnexionBDD cbdd = new ConnexionBDD();
-        cbdd.test();
+        
+        
 
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -521,8 +522,11 @@ public class IfAppli extends javax.swing.JFrame {
 
 public void actualiserListeSalon() {
 
+         Identification login = new Identification();
+        String loginUse = login.log1.getLogin(); 
+        
         ConnexionBDD salonBD = new ConnexionBDD();
-        ResultSet rsSalon = salonBD.listeSalon();
+        ResultSet rsSalon = salonBD.listeSalon(loginUse);
         
         try {
             while (rsSalon.next()) {

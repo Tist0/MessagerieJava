@@ -124,14 +124,15 @@ public class GererConversations extends javax.swing.JPanel {
         ConnexionBDD cbdd1 = new ConnexionBDD();
         cbdd1.insertSql(envoieMsg);
         
-        //L'admin est appartient à tous les salons créés
-        String requete2 = "SELECT idSalon FROM SALON WHERE nom_Salon='"+txtSalon+"';";
+        //L'admin est appartient à tous les salons créésSALON WHERE nom_Salon='"+txtSalon+"';";
+        
         ConnexionBDD cbdd2 = new ConnexionBDD();
-        cbdd2.insertSql(requete2);
+       String t = cbdd2.getIdSalon(txtSalon);
         
         
         
-        String requete3 = "INSERT INTO acceder(login,idsalon) VALUES (admin,'"+t+"');";    
+        
+        String requete3 = "INSERT INTO Acceder(login,idSalon) VALUES ('admin','"+t+"');";    
         ConnexionBDD cbdd3 = new ConnexionBDD();
         cbdd3.insertSql(requete3);
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -167,4 +168,3 @@ public class GererConversations extends javax.swing.JPanel {
     // End of variables declaration//GEN-END:variables
 }
 
-/*test*/
