@@ -52,7 +52,6 @@ public class GererConversations extends javax.swing.JPanel {
             }
         });
 
-        input1.setText("Salon");
         input1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 input1ActionPerformed(evt);
@@ -122,8 +121,19 @@ public class GererConversations extends javax.swing.JPanel {
         
         //Envoi de la requête
         String envoieMsg = "INSERT INTO salon(nom_salon,description_salon,idadmin) VALUES ('"+txtSalon+"','"+txtDescription+"',1);";
-        ConnexionBDD cbdd = new ConnexionBDD();
-        cbdd.insertSql(envoieMsg);
+        ConnexionBDD cbdd1 = new ConnexionBDD();
+        cbdd1.insertSql(envoieMsg);
+        
+        //L'admin est appartient à tous les salons créés
+        String requete2 = "SELECT idSalon FROM SALON WHERE nom_Salon='"+txtSalon+"';";
+        ConnexionBDD cbdd2 = new ConnexionBDD();
+        cbdd2.insertSql(requete2);
+        
+        
+        
+        String requete3 = "INSERT INTO acceder(login,idsalon) VALUES (admin,'"+t+"');";    
+        ConnexionBDD cbdd3 = new ConnexionBDD();
+        cbdd3.insertSql(requete3);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -135,13 +145,13 @@ public class GererConversations extends javax.swing.JPanel {
         String txtSalon = salon.replace("\'","\''");
         
         //Envoi de la requête
-        String envoieMsg = "DELETE FROM salon WHERE (nom_salon="+txtSalon+");";
+        String envoieMsg = "DELETE FROM salon WHERE (nom_salon='"+txtSalon+"');";
         ConnexionBDD cbdd = new ConnexionBDD();
         cbdd.insertSql(envoieMsg);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void input1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_input1ActionPerformed
-        input1.setText("");
+       
     }//GEN-LAST:event_input1ActionPerformed
 
 
