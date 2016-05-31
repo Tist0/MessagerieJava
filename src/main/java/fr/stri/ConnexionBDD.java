@@ -208,6 +208,9 @@ public class ConnexionBDD {
         
         
         
+        
+        
+        
         public String idSalonPrivee(String nomSalon)
         {
             String idSalon = null;        

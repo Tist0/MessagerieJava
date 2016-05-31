@@ -33,7 +33,7 @@ CREATE TABLE Salon(
 CREATE TABLE Message(
 	idMessage     SERIAL NOT NULL ,
 	date_Message  DATE   ,
-	heure_Message TIMETZ   ,
+	heure_Message TIME   ,
 	contenu       VARCHAR (250)  ,
 	login_envoi         VARCHAR (25)  ,
 	idSalon       INT   ,
@@ -84,7 +84,7 @@ INSERT INTO Users VALUES ('admin','stri',TRUE);
 
 INSERT INTO Admin(login_admin) VALUES ('admin');
 
-INSERT INTO Salon(nom_Salon,description_salon,idAdmin) VALUES ('Disscution PUBLIC','Salon de discution Public',1);
+INSERT INTO Salon(nom_Salon,description_salon,idAdmin) VALUES ('Discution publique','Salon de discution publique',1);
 INSERT INTO Salon(nom_Salon,description_salon,idAdmin) VALUES ('Pojet IHM','Salon des spécialistes IHM',1);
 INSERT INTO Salon(nom_Salon,description_salon,idAdmin) VALUES ('Projet BDD','Salon des spécialistes BDD',1);
 INSERT INTO Salon(nom_Salon,description_salon,idAdmin) VALUES ('Projet PHP','Salon des spécialistes PHP',1);

@@ -5,19 +5,31 @@
  */
 package fr.stri;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author florian b
  */
 public class AjoutPersonnes extends javax.swing.JPanel {
+    MyAbstractList listModel;
 
     /**
      * Creates new form AjoutPersonnes
      */
     public AjoutPersonnes() {
         initComponents();
+        
+        //listModel = new MyAbstractList();
+        //JList jList3 = new JList(listModel);
+        actualiserListeSalon();
+        //actualiser();
     }
-
+        
+        
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -48,8 +60,6 @@ public class AjoutPersonnes extends javax.swing.JPanel {
         jScrollPane3.setViewportView(jList3);
 
         jLabel2.setText("Salon");
-
-        jComboBoxSalon.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jLabel3.setText("Sélectionnez un salon puis ajouter/retirez des membres");
 
@@ -143,12 +153,26 @@ public class AjoutPersonnes extends javax.swing.JPanel {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        
-        
+         actualiser();       
         /*Reste a mettre l'id salon dynamique*/
         String titreSalon = jComboBoxSalon.getSelectedItem().toString(); 
         ConnexionBDD cbddd = new ConnexionBDD();        
         String recupIdSalon = cbddd.getIdSalon(titreSalon);
+        
+               
+        ConnexionBDD cbdd = new ConnexionBDD();
+        ResultSet rs = cbdd.listeMembre();
+        
+        try {
+            while (rs.next()) {
+                String login = rs.getString("login");
+                Personne p = new Personne(login);                
+                //jList3.add(p);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(IfAppli.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
 
@@ -167,4 +191,43 @@ public class AjoutPersonnes extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     // End of variables declaration//GEN-END:variables
+
+    public void actualiser() {
+     /*Clear/Reset avant d'actualiser*/    
+        /*------------------------------------------*/        
+        ConnexionBDD cbdd = new ConnexionBDD();
+        ResultSet rs = cbdd.listeMembre();
+             
+        try {
+            while (rs.next()) {
+                String login = rs.getString("login");
+                Personne p = new Personne(login);                
+                listModel.add(p);
+                //jList3.
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(IfAppli.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        /*------------------------------------------*/
+}
+
+
+
+    public void actualiserListeSalon() {
+        Identification login = new Identification();
+        String loginUse = login.log1.getLogin(); 
+        
+        ConnexionBDD salonBD = new ConnexionBDD();
+        ResultSet rsSalon = salonBD.listeSalon(loginUse);
+        
+        try {
+            while (rsSalon.next()) {
+                String salon = rsSalon.getString("nom_salon");
+                SalonDiscution q = new SalonDiscution(salon);                             
+                jComboBoxSalon.addItem(q.toString());
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(IfAppli.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 }

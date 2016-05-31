@@ -15,6 +15,7 @@ import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.Timer;
+import javax.swing.WindowConstants;
 
 /**
  *
@@ -37,6 +38,7 @@ public class IfAppli extends javax.swing.JFrame {
         
         actualiserListeSalon();
         actualiser();
+        statutEnligne();
         
         Timer tMessage = new Timer(1000, new ActionListener() {
         @Override
@@ -81,6 +83,14 @@ public class IfAppli extends javax.swing.JFrame {
         setTitle("Tokupanda");
         setIconImages(null);
         setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                formWindowClosed(evt);
+            }
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         jPanel1.setName("Tokupanda"); // NOI18N
 
@@ -206,9 +216,9 @@ public class IfAppli extends javax.swing.JFrame {
         jMenuBar1.add(mnuMembres);
 
         mnuGestion.setText("Gestion du salon");
-        mnuGestion.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mnuGestionActionPerformed(evt);
+        mnuGestion.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                mnuGestionMouseClicked(evt);
             }
         });
         jMenuBar1.add(mnuGestion);
@@ -280,7 +290,7 @@ public class IfAppli extends javax.swing.JFrame {
                 .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jInternalFrame1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(647, 647, 647))
+                .addGap(734, 734, 734))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -364,26 +374,17 @@ public class IfAppli extends javax.swing.JFrame {
         
         
         if ("En ligne".equals(statut)){
-            String envoieMsg = "UPDATE USERS SET statut = '1' WHERE login = '"+loginUse+"';";
-            
-            ConnexionBDD cbdd = new ConnexionBDD();
-            cbdd.insertSql(envoieMsg);
+            statutEnligne();
             lblPseudo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/en ligne.png")));
         }
         else{
-            String envoieMsg = "UPDATE USERS SET statut = '0' WHERE login = '"+loginUse+"';";
-        
-            ConnexionBDD cbdd = new ConnexionBDD();
-            cbdd.insertSql(envoieMsg);
+            statutAbsent();
             lblPseudo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/absent.png")));        }
     }//GEN-LAST:event_jComboBox2ActionPerformed
 
     private void lstPersonnesComponentAdded(java.awt.event.ContainerEvent evt) {//GEN-FIRST:event_lstPersonnesComponentAdded
         // TODO add your handling code here:
     }//GEN-LAST:event_lstPersonnesComponentAdded
-
-    private void mnuGestionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuGestionActionPerformed
-    }//GEN-LAST:event_mnuGestionActionPerformed
 
     private void mnuDescriptionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuDescriptionActionPerformed
     }//GEN-LAST:event_mnuDescriptionActionPerformed
@@ -458,6 +459,18 @@ public class IfAppli extends javax.swing.JFrame {
               
     }//GEN-LAST:event_lstPersonnesAncestorAdded
 
+    private void mnuGestionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mnuGestionMouseClicked
+        gestionAdmin.main(login);
+    }//GEN-LAST:event_mnuGestionMouseClicked
+
+    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
+        statutAbsent();        // TODO add your handling code here:
+    }//GEN-LAST:event_formWindowClosed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+      statutAbsent();    // TODO add your handling code here:
+    }//GEN-LAST:event_formWindowClosing
+
     /**
      * @param args the command line arguments
      */
@@ -492,6 +505,7 @@ public class IfAppli extends javax.swing.JFrame {
 
         /*--------------------------------------------------*/
  /*----------------------------------------------------------*/
+
  /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -522,7 +536,7 @@ public class IfAppli extends javax.swing.JFrame {
 
 public void actualiserListeSalon() {
 
-         Identification login = new Identification();
+        Identification login = new Identification();
         String loginUse = login.log1.getLogin(); 
         
         ConnexionBDD salonBD = new ConnexionBDD();
@@ -601,19 +615,7 @@ public void actualiser() {
             /*------------------------------------------*/
             /*Reste a mettre le login dynamique, comme l'id salon*/
             
-        /*------------------------------------------*/
-        
-
-        
-        
-        
-        
-
-      
-      
-        
-        
-        
+        /*------------------------------------------*/     
         /*Affecte le login de la personne connecté au lable1 (au-dessus du bouton absent)*/
         Identification login = new Identification();
         String loginUse = login.log1.getLogin(); 
@@ -634,4 +636,28 @@ public void actualiser() {
         taMsgSalon.setBackground(Color.WHITE);
         jPanel7.setBackground(bleuAzur);
     }
+            
+    
+         private int statutEnligne() {
+         
+            Identification login = new Identification();
+            String loginUse = login.log1.getLogin(); 
+            String envoieMsg = "UPDATE USERS SET statut = '1' WHERE login = '"+loginUse+"';";
+        
+            ConnexionBDD cbdd = new ConnexionBDD();
+            cbdd.insertSql(envoieMsg); 
+            return 1;
+     }
+    
+     private int statutAbsent() {
+         
+            Identification login = new Identification();
+            String loginUse = login.log1.getLogin(); 
+            String envoieMsg = "UPDATE USERS SET statut = '0' WHERE login = '"+loginUse+"';";
+        
+            ConnexionBDD cbdd = new ConnexionBDD();
+            cbdd.insertSql(envoieMsg); 
+            return 1;
+     }
+     
 }

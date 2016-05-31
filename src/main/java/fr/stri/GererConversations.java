@@ -5,6 +5,11 @@
  */
 package fr.stri;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author florian b
@@ -14,8 +19,9 @@ public class GererConversations extends javax.swing.JPanel {
     /**
      * Creates new form GererConversations
      */
-    public GererConversations() {
+    public GererConversations() {     
         initComponents();
+        actualiserListeSalon();
     }
 
     /**
@@ -35,17 +41,21 @@ public class GererConversations extends javax.swing.JPanel {
         jLabel3 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         input2 = new javax.swing.JTextArea();
+        jComboBox1 = new javax.swing.JComboBox<>();
+        jSeparator1 = new javax.swing.JSeparator();
+        jLabel4 = new javax.swing.JLabel();
 
         jLabel1.setText("Gestion des salons");
 
-        jButton1.setText("Ajouter la conversation");
+        jButton1.setText("Ajouter le salon");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Supprimer la conversation");
+        jButton2.setText("Supprimer le salon");
+        jButton2.setActionCommand("Supprimer le salon");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -58,13 +68,15 @@ public class GererConversations extends javax.swing.JPanel {
             }
         });
 
-        jLabel2.setText("Nom de la conversation");
+        jLabel2.setText("Nom du salon");
 
         jLabel3.setText("Description");
 
         input2.setColumns(20);
         input2.setRows(5);
         jScrollPane1.setViewportView(input2);
+
+        jLabel4.setText("Nom du salon");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -77,16 +89,19 @@ public class GererConversations extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(42, 42, 42)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(input1, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 339, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel3)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton2))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(input1, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 313, Short.MAX_VALUE)))
-                .addContainerGap(45, Short.MAX_VALUE))
+                        .addGap(1, 1, 1)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addContainerGap(19, Short.MAX_VALUE))
+            .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -100,12 +115,18 @@ public class GererConversations extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
-                .addGap(22, 22, 22))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton2)
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -123,18 +144,19 @@ public class GererConversations extends javax.swing.JPanel {
         String envoieMsg = "INSERT INTO salon(nom_salon,description_salon,idadmin) VALUES ('"+txtSalon+"','"+txtDescription+"',1);";
         ConnexionBDD cbdd1 = new ConnexionBDD();
         cbdd1.insertSql(envoieMsg);
+        input1.setText("");
+        input2.setText("");
         
-        //L'admin est appartient à tous les salons créésSALON WHERE nom_Salon='"+txtSalon+"';";
-        
+        //L'admin est appartient à tous les salons créésSALON WHERE nom_Salon='"+txtSalon+"';";        
         ConnexionBDD cbdd2 = new ConnexionBDD();
-       String t = cbdd2.getIdSalon(txtSalon);
-        
-        
-        
+        String t = cbdd2.getIdSalon(txtSalon);
         
         String requete3 = "INSERT INTO Acceder(login,idSalon) VALUES ('admin','"+t+"');";    
         ConnexionBDD cbdd3 = new ConnexionBDD();
         cbdd3.insertSql(requete3);
+        
+        jComboBox1.removeAllItems();
+        actualiserListeSalon();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -144,11 +166,18 @@ public class GererConversations extends javax.swing.JPanel {
         
         //Remplace les caractère '" pour éviter les erreurs
         String txtSalon = salon.replace("\'","\''");
+        String titreSalon = jComboBox1.getSelectedItem().toString(); 
+        
+        ConnexionBDD cbddd = new ConnexionBDD();        
+        String retIdSalon = cbddd.getIdSalon(titreSalon);
         
         //Envoi de la requête
-        String envoieMsg = "DELETE FROM salon WHERE (nom_salon='"+txtSalon+"');";
+        String envoieMsg = "DELETE FROM ACCEDER WHERE (idsalon='"+retIdSalon+"');DELETE FROM salon WHERE (nom_salon='"+titreSalon+"');";
         ConnexionBDD cbdd = new ConnexionBDD();
         cbdd.insertSql(envoieMsg);
+        
+        jComboBox1.removeAllItems();
+        actualiserListeSalon();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void input1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_input1ActionPerformed
@@ -161,10 +190,30 @@ public class GererConversations extends javax.swing.JPanel {
     private javax.swing.JTextArea input2;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JSeparator jSeparator1;
     // End of variables declaration//GEN-END:variables
-}
 
+    public void actualiserListeSalon() {
+        Identification login = new Identification();
+        String loginUse = login.log1.getLogin(); 
+        
+        ConnexionBDD salonBD = new ConnexionBDD();
+        ResultSet rsSalon = salonBD.listeSalon(loginUse);
+        
+        try {
+            while (rsSalon.next()) {
+                String salon = rsSalon.getString("nom_salon");
+                SalonDiscution q = new SalonDiscution(salon);                             
+                jComboBox1.addItem(q.toString());
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(IfAppli.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+}

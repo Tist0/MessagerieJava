@@ -50,7 +50,7 @@ public class Administration extends javax.swing.JInternalFrame {
 
         setBackground(new java.awt.Color(255, 255, 204));
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 153));
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
         jButton1.setText("Ajouter des personnes");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
