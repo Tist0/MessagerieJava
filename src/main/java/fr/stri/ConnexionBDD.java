@@ -33,7 +33,7 @@ public class ConnexionBDD {
 
             conn = DriverManager.getConnection(url, user, passwd);
             // System.out.println("Connexion effective !");
-
+              conn.setAutoCommit(false);
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
 
@@ -48,7 +48,7 @@ public class ConnexionBDD {
 
             stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery("SELECT * FROM Users;");
-
+            conn.close();
             while (rs.next()) {
 
                 String login = rs.getString("login");
@@ -71,7 +71,7 @@ public class ConnexionBDD {
 
             stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery("SELECT login FROM Users ORDER BY login ASC;");
-
+            conn.close();    //BUGED ?
             return rs;
 
         } catch (SQLException ex) {
@@ -89,7 +89,8 @@ public class ConnexionBDD {
 
             stmt = conn.createStatement();
             ResultSet rs;                        
-            rs = stmt.executeQuery("SELECT nom_salon FROM SALON ORDER BY nom_salon ASC;");           
+            rs = stmt.executeQuery("SELECT nom_salon FROM SALON ORDER BY nom_salon ASC;");   
+            conn.close();    //BUGED ?
             return rs;
             
         } catch (SQLException ex) {
@@ -109,7 +110,7 @@ public class ConnexionBDD {
             stmt = conn.createStatement();
             
             stmt.executeUpdate(requete);
-            stmt.close();
+            //stmt.close();
             conn.commit();
             conn.close();
         } catch (SQLException ex) {
@@ -137,7 +138,7 @@ public class ConnexionBDD {
             recupMsg = recupMsg.concat("';");
            // System.out.println(q);
           ResultSet rs = stmt.executeQuery(recupMsg);
-            
+            conn.close();    //BUGED ?
             return rs;
             
         }
@@ -160,7 +161,7 @@ public class ConnexionBDD {
             //System.out.println(descri);
             
              }
-                     
+                 conn.close();    //BUGED ?    
             return descri;
             
         } 
@@ -190,7 +191,7 @@ public class ConnexionBDD {
             //System.out.println(descri);
             
              }
-                     
+                 conn.close();    //BUGED ?    
             return idSalon;
             
         } 
@@ -221,7 +222,7 @@ public class ConnexionBDD {
             //System.out.println(descri);
             
              }
-                     
+                 conn.close();    //BUGED ?    
             return idSalon;
             
         } 
@@ -299,7 +300,7 @@ public class ConnexionBDD {
             
             
              }
-                     
+              conn.close();    //BUGED ?
             return result;
             
         } 
@@ -309,6 +310,39 @@ public class ConnexionBDD {
         }
         
         }
+        
+     /* ####*/
+        
+                
+        public ResultSet getMembreCoSalon(String nomSalon)
+        {
+                   
+        try {
+            Connection conn = connexion();
+            Statement stmt = null;
+            stmt = conn.createStatement();
+            String q = "select s.nom_salon,u.login from salon as s, users as u,acceder as a where s.idsalon=a.idsalon AND u.login=a.login AND  u.statut='t'  AND s.nom_salon='";
+            q = q.concat(nomSalon);
+            q = q.concat("';");
+            
+           // System.out.println(q);
+            ResultSet rs = stmt.executeQuery(q);
+            
+             
+                 conn.close();    //BUGED ?    
+            return rs;
+            
+        } 
+        catch (SQLException ex) {
+            Logger.getLogger(ConnexionBDD.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+        
+        }
+
+        
+        
+        
         
         
 }

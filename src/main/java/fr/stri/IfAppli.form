@@ -240,7 +240,7 @@
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jScrollPane2" min="-2" pref="352" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="tfSendMessage" pref="42" max="32767" attributes="0"/>
+                          <Component id="tfSendMessage" pref="48" max="32767" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -273,9 +273,6 @@
                         <Property name="columns" type="int" value="20"/>
                         <Property name="rows" type="int" value="5"/>
                       </Properties>
-                      <BindingProperties>
-                        <BindingProperty name="lineWrap" source="btnActualiser" sourcePath="true" target="taMsgSalon" targetPath="lineWrap" updateStrategy="0" immediately="false"/>
-                      </BindingProperties>
                     </Component>
                   </SubComponents>
                 </Container>
@@ -300,6 +297,9 @@
                       <Properties>
                         <Property name="text" type="java.lang.String" value="Membres connect&#xe9;s"/>
                       </Properties>
+                      <Events>
+                        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="mnuMembresMouseClicked"/>
+                      </Events>
                     </Menu>
                     <Menu class="javax.swing.JMenu" name="mnuGestion">
                       <Properties>
@@ -321,6 +321,7 @@
               </Properties>
               <Events>
                 <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="jComboBox1ItemStateChanged"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jComboBox1ActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel1">
