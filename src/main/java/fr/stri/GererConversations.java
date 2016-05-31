@@ -46,6 +46,18 @@ public class GererConversations extends javax.swing.JPanel {
         });
 
         jButton2.setText("Supprimer la conversation");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        input1.setText("Salon");
+        input1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                input1ActionPerformed(evt);
+            }
+        });
 
         jLabel2.setText("Nom de la conversation");
 
@@ -66,18 +78,16 @@ public class GererConversations extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(42, 42, 42)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(input1, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jButton1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
-                        .addComponent(jButton2)
-                        .addGap(32, 32, 32))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap())))
+                        .addComponent(jButton1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButton2))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(input1, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 313, Short.MAX_VALUE)))
+                .addContainerGap(45, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -102,18 +112,37 @@ public class GererConversations extends javax.swing.JPanel {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        //Récupère le contenu des champs
         String salon = input1.getText();
         String description = input2.getText();
         
-        
+        //Remplace les caractère '" pour éviter les erreurs
         String txtSalon = salon.replace("\'","\''");
         String txtDescription = description.replace("\'","\''");
-        System.out.println("Salon : "+txtSalon+" Description : " + txtDescription);
+        
+        //Envoi de la requête
         String envoieMsg = "INSERT INTO salon(nom_salon,description_salon,idadmin) VALUES ('"+txtSalon+"','"+txtDescription+"',1);";
-        System.out.println(envoieMsg);
         ConnexionBDD cbdd = new ConnexionBDD();
         cbdd.insertSql(envoieMsg);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        //Récupère le nom du salon
+        String salon = input1.getText();
+        
+        //Remplace les caractère '" pour éviter les erreurs
+        String txtSalon = salon.replace("\'","\''");
+        
+        //Envoi de la requête
+        String envoieMsg = "DELETE FROM salon WHERE (nom_salon="+txtSalon+");";
+        ConnexionBDD cbdd = new ConnexionBDD();
+        cbdd.insertSql(envoieMsg);
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void input1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_input1ActionPerformed
+        input1.setText("");
+    }//GEN-LAST:event_input1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
