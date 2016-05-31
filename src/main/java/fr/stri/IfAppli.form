@@ -170,6 +170,7 @@
                       </Properties>
                       <Events>
                         <EventHandler event="componentAdded" listener="java.awt.event.ContainerListener" parameters="java.awt.event.ContainerEvent" handler="lstPersonnesComponentAdded"/>
+                        <EventHandler event="ancestorAdded" listener="javax.swing.event.AncestorListener" parameters="javax.swing.event.AncestorEvent" handler="lstPersonnesAncestorAdded"/>
                         <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="lstPersonnesMouseClicked"/>
                       </Events>
                     </Component>

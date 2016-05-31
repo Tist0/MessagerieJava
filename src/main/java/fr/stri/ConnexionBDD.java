@@ -25,7 +25,7 @@ public class ConnexionBDD {
         Connection conn = null;
         try {
 
-            String url = "jdbc:postgresql://localhost:5432/java";
+            String url = "jdbc:postgresql://localhost:5432/java2";
             String user = "postgres";
             String passwd = "stri";
             Class.forName("org.postgresql.Driver");
@@ -187,7 +187,7 @@ public class ConnexionBDD {
             ResultSet rs = stmt.executeQuery(q);
             
              while (rs.next()) {
-            idSalon = rs.getString("idsalon");
+            idSalon = rs.getString("idsalon"); 
             //System.out.println(descri);
             
              }

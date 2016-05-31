@@ -87,21 +87,30 @@ ALTER TABLE Admin ADD CONSTRAINT FK_Admin_login_admin FOREIGN KEY (login_admin) 
 
 INSERT INTO Users VALUES ('Jean-Pat','stri',TRUE);
 INSERT INTO Users VALUES ('Jean-Mimi','stri',FALSE);
+INSERT INTO Users VALUES ('Jean-Krikri','stri',FALSE);
+INSERT INTO Users VALUES ('Jean-Jean','stri',FALSE);
+INSERT INTO Users VALUES ('Jean-Vivi','stri',FALSE);
 INSERT INTO Users VALUES ('STRI','stri',TRUE);
+INSERT INTO Users VALUES ('admin','stri',TRUE);
 
-INSERT INTO Admin(login_admin) VALUES ('Jean-Mimi');
+INSERT INTO Admin(login_admin) VALUES ('admin');
 
-INSERT INTO Salon(nom_Salon,description_salon,idAdmin) VALUES ('LES-TUEURS','Salon des tueurs',1);
-INSERT INTO Salon(nom_Salon,description_salon,idAdmin) VALUES ('LES-VIOLENTS','Salon des violents',1);
-
+INSERT INTO Salon(nom_Salon,description_salon,idAdmin) VALUES ('Pojet IHM','Salon des spécialistes IHM',1);
+INSERT INTO Salon(nom_Salon,description_salon,idAdmin) VALUES ('Projet BDD','Salon des spécialistes BDD',1);
+INSERT INTO Salon(nom_Salon,description_salon,idAdmin) VALUES ('Projet PHP','Salon des spécialistes PHP',1);
 
 INSERT INTO Acceder(login,idSalon) VALUES ('Jean-Pat',1);
 INSERT INTO Acceder(login,idSalon) VALUES ('Jean-Mimi',1);
 INSERT INTO Acceder(login,idSalon) VALUES ('STRI',1);
+
 INSERT INTO Acceder(login,idSalon) VALUES ('Jean-Mimi',2);
 INSERT INTO Acceder(login,idSalon) VALUES ('STRI',2);
 
+INSERT INTO Acceder(login,idSalon) VALUES ('STRI',3);
+INSERT INTO Acceder(login,idSalon) VALUES ('Jean-Jean',3);
 
+
+/*A suprimer*/
 INSERT INTO Message(date_Message,heure_Message,contenu,login_envoi,idSalon ) VALUES ('15/02/1995','20:23:45','bonjour','Jean-Pat',1);
 INSERT INTO Message(date_Message,heure_Message,contenu,login_envoi,idSalon ) VALUES ('15/02/1995','20:26:12','bonjour','Jean-Mimi',1);
 INSERT INTO Message(date_Message,heure_Message,contenu,login_envoi,idSalon ) VALUES ('15/02/2225','23:23:23','MERCI','Jean-Mimi',2);
