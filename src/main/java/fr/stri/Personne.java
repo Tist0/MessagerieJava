@@ -22,13 +22,19 @@ class Personne {
         return nom;
     }
 
+/**
+ * Definie le nom de l'objet personne. Prend en paramètre le nouveau nom
+ * @param nom 
+ */
     public void setNom(String nom) {
         this.nom = nom;
     }
-
+/**
+ * Renvoie le nom de l'objet personne en String
+ * @return nom
+ */
     @Override
     public String toString() {
         return getNom(); //To change body of generated methods, choose Tools | Templates.
     }
-
 }

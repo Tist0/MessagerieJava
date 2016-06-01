@@ -40,6 +40,7 @@ public class IfAppli extends javax.swing.JFrame {
         actualiser();
         statutEnligne();
         
+        //Déclaration du timer (pour actualisation toute les 1000 miliseconds)
         Timer tMessage = new Timer(1000, new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -99,15 +100,6 @@ public class IfAppli extends javax.swing.JFrame {
         lstPersonnes.addContainerListener(new java.awt.event.ContainerAdapter() {
             public void componentAdded(java.awt.event.ContainerEvent evt) {
                 lstPersonnesComponentAdded(evt);
-            }
-        });
-        lstPersonnes.addAncestorListener(new javax.swing.event.AncestorListener() {
-            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
-            }
-            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
-                lstPersonnesAncestorAdded(evt);
-            }
-            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
             }
         });
         lstPersonnes.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -233,7 +225,7 @@ public class IfAppli extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 352, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(tfSendMessage, javax.swing.GroupLayout.DEFAULT_SIZE, 51, Short.MAX_VALUE)
+                .addComponent(tfSendMessage, javax.swing.GroupLayout.DEFAULT_SIZE, 54, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -241,11 +233,6 @@ public class IfAppli extends javax.swing.JFrame {
         jComboBox1.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 jComboBox1ItemStateChanged(evt);
-            }
-        });
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
             }
         });
 
@@ -312,11 +299,17 @@ public class IfAppli extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+/**
+ * Envoie un message
+ * @param evt 
+ */
     private void tfSendMessageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfSendMessageActionPerformed
         String texte = tfSendMessage.getText();
+        
+        // Remplace les ' et "" dans les champ texte pour ne pas avoir de problèmes dans les requêtes
         String text = texte.replace("\'","\''");
         
+        // Récupère la date
         Calendar cal = Calendar.getInstance();
         int seconde = cal.get(Calendar.SECOND);
         int minute = cal.get(Calendar.MINUTE);
@@ -327,7 +320,6 @@ public class IfAppli extends javax.swing.JFrame {
         String date = (jour+"/"+mois+"/"+annee);
         String horaire = (heure+":"+minute+":"+seconde);
         
-        /*Reste a mettre l'id salon dynamique*/
         String titreSalon = jComboBox1.getSelectedItem().toString(); 
         ConnexionBDD cbddd = new ConnexionBDD();        
         String recupIdSalon = cbddd.getIdSalon(titreSalon);
@@ -338,25 +330,19 @@ public class IfAppli extends javax.swing.JFrame {
         String envoieMsg = "INSERT INTO Message(date_Message,heure_Message,contenu,login_envoi,idSalon) VALUES ('"+date+"','"+horaire+"','"+text+"','"+loginUse+"','"+recupIdSalon+"');";
         System.err.println("TEST" + envoieMsg);
      
+        //Envoie de la requête
         ConnexionBDD cbdd = new ConnexionBDD();
         cbdd.insertSql(envoieMsg);
         
-        //En cours: condition pour afficher explicitement que c'est une nouvelle journée depuis le dernier message
-        //BDD: Besoin d'un champs dateDernierMessage pour la table salon
-        /*if (cal.get(Calendar.DAY_OF_YEAR) != dateDernierMessage)
-        {
-            jTextArea1.append(date);
-        }*/
-
-        //taMsgSalon.append(heure+ ":" +minute+"   "+text+"\n");
-
         tfSendMessage.selectAll();
-
         tfSendMessage.setCaretPosition(tfSendMessage.getDocument().getLength());
         tfSendMessage.getText();
         tfSendMessage.setText(""); 
     }//GEN-LAST:event_tfSendMessageActionPerformed
-
+/**
+ * Menu déroulant permettant de changer de statut
+ * @param evt 
+ */
     private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
         String statut = jComboBox2.getSelectedItem().toString();
         
@@ -379,7 +365,10 @@ public class IfAppli extends javax.swing.JFrame {
 
     private void mnuDescriptionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuDescriptionActionPerformed
     }//GEN-LAST:event_mnuDescriptionActionPerformed
-
+/**
+ * Affichage de la description du salon
+ * @param evt 
+ */
     private void mnuDescriptionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mnuDescriptionMouseClicked
         /*########*/
         ConnexionBDD cbdd = new ConnexionBDD();
@@ -387,14 +376,16 @@ public class IfAppli extends javax.swing.JFrame {
         String description = cbdd.descriptionSQL(selection);
         JOptionPane.showMessageDialog(taMsgSalon, description);
     }//GEN-LAST:event_mnuDescriptionMouseClicked
-
+/**
+ * Selection de personnes dans la liste de personne pour créer un salon privé
+ * @param evt 
+ */
     private void lstPersonnesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lstPersonnesMouseClicked
         String personSelect = (lstPersonnes.getSelectedValue().toString());
 
         Identification login = new Identification();
         String loginUse = login.log1.getLogin(); 
         
-        //jComboBox2.toString();
         if (evt.getClickCount() == 2 && !evt.isConsumed()) {
             evt.consume();
             System.out.println(personSelect);
@@ -404,26 +395,38 @@ public class IfAppli extends javax.swing.JFrame {
         }        
     }//GEN-LAST:event_lstPersonnesMouseClicked
 
+/**
+ * Change le nom du salon dans la combobox1
+ * @param evt 
+ */
     private void jComboBox1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox1ItemStateChanged
-        //String titreSalon = jComboBox1.getSelectedItem().toString();
         String titreSalon = jComboBox1.getSelectedItem().toString(); 
         jInternalFrame1.setTitle(titreSalon);       
     }//GEN-LAST:event_jComboBox1ItemStateChanged
 
+/**
+ * Vide la zone texte lorsque l'on clique dedans
+ * Permet d'éviter d'avoir a effacer le texte pré-écris
+ * @param evt 
+ */
     private void tfSendMessageMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tfSendMessageMouseClicked
         tfSendMessage.setText("");
         tfSendMessage.setForeground(new java.awt.Color(0, 0, 0));        // TODO add your handling code here:
     }//GEN-LAST:event_tfSendMessageMouseClicked
 
+/**
+ * Configuration de base dans la zone de texte
+ * @param evt 
+ */
     private void tfSendMessageFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_tfSendMessageFocusLost
         tfSendMessage.setForeground(new java.awt.Color(153, 153, 153));
         tfSendMessage.setText("Entrer un message ici");  
     }//GEN-LAST:event_tfSendMessageFocusLost
 
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox1ActionPerformed
-
+/**
+ * PAS ENCORE IMPLEMENTE: Quand on double clique sur une personne, crée un salon privée entre les 2 utilisateurs
+ * @param evt 
+ */
     private void mnuMembresMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mnuMembresMouseClicked
         // affectation du texte
         mnuMembres.removeAll();
@@ -435,7 +438,7 @@ public class IfAppli extends javax.swing.JFrame {
             while (rs2.next()) {
                 JMenuItem mi = new JMenuItem();
                 String login = rs2.getString("login");               
-               //mi.setText(p.getNom());
+
                 mi.setText(login);
                 mi.setEnabled(true);
                 mnuMembres.add(mi);
@@ -444,11 +447,6 @@ public class IfAppli extends javax.swing.JFrame {
             Logger.getLogger(IfAppli.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_mnuMembresMouseClicked
-
-    private void lstPersonnesAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_lstPersonnesAncestorAdded
-              // TODO add your handling code here:
-              
-    }//GEN-LAST:event_lstPersonnesAncestorAdded
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
         statutAbsent();        // TODO add your handling code here:
@@ -520,6 +518,9 @@ public class IfAppli extends javax.swing.JFrame {
     private javax.swing.JTextField tfSendMessage;
     // End of variables declaration//GEN-END:variables
 
+/**
+ * Actualise la liste des salon dans la liste JComBox1
+ */
 public void actualiserListeSalon() {
 
         Identification login = new Identification();
@@ -539,29 +540,14 @@ public void actualiserListeSalon() {
         }
     }
 
+/**
+ * Actualise les messages du salon selectionné et la liste des utilisateurs
+ */
 public void actualiser() {
      /*Clear/Reset avant d'actualiser*/    
         model.clear();
         taMsgSalon.setText("");
 
-        
-        /*-----------------------------------------------*/
-        /*ConnexionBDD salonBD = new ConnexionBDD();
-        ResultSet rsSalon = salonBD.listeSalon();
-        
-        try {
-            while (rsSalon.next()) {
-                String salon = rsSalon.getString("nom_salon");
-                SalonDiscution q = new SalonDiscution(salon);
-                
-                    System.out.println("\n\n\n\n"+q);
-                    jComboBox1.addItem(q);               
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(IfAppli.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        */
-        
         /*Liste personnes*/
         /*------------------------------------------*/        
         ConnexionBDD cbdd = new ConnexionBDD();
@@ -598,8 +584,7 @@ public void actualiser() {
             Logger.getLogger(IfAppli.class.getName()).log(Level.SEVERE, null, ex);
         }        
         /*Messagerie*/
-            /*------------------------------------------*/
-            /*Reste a mettre le login dynamique, comme l'id salon*/
+        /*------------------------------------------*/
             
         /*------------------------------------------*/     
         /*Affecte le login de la personne connecté au lable1 (au-dessus du bouton absent)*/
@@ -608,24 +593,26 @@ public void actualiser() {
         lblPseudo.setText(loginUse);    
 }
 
+/**
+ * Crée et applique le jeu de couleur à l'application
+ */
     private void colorisation() {
         Color bleuAzur = new Color(245, 250, 250);
 
         jInternalFrame1.setBorder(javax.swing.BorderFactory.createEtchedBorder(java.awt.Color.white, null));
         jInternalFrame1.getContentPane().setBackground(Color.WHITE);
         jPanel1.setBackground(bleuAzur);
-        //.setBackground(Color.WHITE);
         jMenuBar1.setBackground(Color.WHITE);
-        //jPanel4.setBackground(Color.WHITE);
-        //jPanel5.setBackground(Color.WHITE);
         jPanel6.setBackground(Color.WHITE);
         taMsgSalon.setBackground(Color.WHITE);
         jPanel7.setBackground(bleuAzur);
     }
             
-    
-         private int statutEnligne() {
-         
+/**
+ * Change le champ statut de l'utilisateur à true
+ * @return 
+ */
+         private int statutEnligne() {         
             Identification login = new Identification();
             String loginUse = login.log1.getLogin(); 
             String envoieMsg = "UPDATE USERS SET statut = '1' WHERE login = '"+loginUse+"';";
@@ -634,9 +621,12 @@ public void actualiser() {
             cbdd.insertSql(envoieMsg); 
             return 1;
      }
-    
-     private int statutAbsent() {
-         
+
+/**
+ * Change le champ statut de l'utilisateur à false
+ * @return 
+ */
+     private int statutAbsent() {         
             Identification login = new Identification();
             String loginUse = login.log1.getLogin(); 
             String envoieMsg = "UPDATE USERS SET statut = '0' WHERE login = '"+loginUse+"';";
@@ -644,6 +634,5 @@ public void actualiser() {
             ConnexionBDD cbdd = new ConnexionBDD();
             cbdd.insertSql(envoieMsg); 
             return 1;
-     }
-     
+     }    
 }

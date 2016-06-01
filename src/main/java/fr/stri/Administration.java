@@ -97,7 +97,7 @@ public class Administration extends javax.swing.JInternalFrame {
         );
         panelDynamiqueLayout.setVerticalGroup(
             panelDynamiqueLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 235, Short.MAX_VALUE)
+            .addGap(0, 319, Short.MAX_VALUE)
         );
 
         getContentPane().add(panelDynamique, java.awt.BorderLayout.CENTER);
@@ -112,8 +112,7 @@ public class Administration extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-        
+        // TODO add your handling code here:       
         p1.setVisible(false);
         p2.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
@@ -127,5 +126,4 @@ public class Administration extends javax.swing.JInternalFrame {
     private javax.swing.JPanel panelDynamique;
     // End of variables declaration//GEN-END:variables
 
-   
 }

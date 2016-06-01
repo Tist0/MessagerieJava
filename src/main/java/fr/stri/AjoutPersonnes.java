@@ -26,7 +26,9 @@ public class AjoutPersonnes extends javax.swing.JPanel {
         //listModel = new MyAbstractList();
         //JList jList3 = new JList(listModel);
         actualiserListeSalon();
-        //actualiser();
+        jComboBox2.removeAllItems();
+        jComboBox1.removeAllItems();
+        actualiser();
     }
         
         
@@ -40,11 +42,7 @@ public class AjoutPersonnes extends javax.swing.JPanel {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jList2 = new javax.swing.JList<>();
         jLabel1 = new javax.swing.JLabel();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        jList3 = new javax.swing.JList<>();
         jLabel2 = new javax.swing.JLabel();
         jComboBoxSalon = new javax.swing.JComboBox<>();
         jLabel3 = new javax.swing.JLabel();
@@ -52,14 +50,18 @@ public class AjoutPersonnes extends javax.swing.JPanel {
         jButton2 = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-
-        jScrollPane2.setViewportView(jList2);
+        jComboBox1 = new javax.swing.JComboBox<>();
+        jComboBox2 = new javax.swing.JComboBox<>();
 
         jLabel1.setText("Gestion des membres");
 
-        jScrollPane3.setViewportView(jList3);
-
         jLabel2.setText("Salon");
+
+        jComboBoxSalon.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxSalonActionPerformed(evt);
+            }
+        });
 
         jLabel3.setText("Sélectionnez un salon puis ajouter/retirez des membres");
 
@@ -71,10 +73,19 @@ public class AjoutPersonnes extends javax.swing.JPanel {
         });
 
         jButton2.setText("<<Retirer");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jLabel4.setText("Membres du salon");
 
         jLabel5.setText("Liste de personnes");
+
+        jComboBox1.setMaximumRowCount(250);
+
+        jComboBox2.setMaximumRowCount(250);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -96,17 +107,16 @@ public class AjoutPersonnes extends javax.swing.JPanel {
                             .addComponent(jComboBoxSalon, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(jButton1)
-                                        .addComponent(jButton2)))
-                                .addComponent(jLabel5))
-                            .addGap(18, 18, 18)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel4)
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(jLabel5)
+                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jButton1))
+                            .addGap(113, 113, 113)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jComboBox2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(jButton2))
+                            .addGap(14, 14, 14))))
                 .addContainerGap(81, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -120,23 +130,19 @@ public class AjoutPersonnes extends javax.swing.JPanel {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jComboBoxSalon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(38, 38, 38)
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(72, 72, 72)
-                        .addComponent(jButton1)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton2))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel5))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel5))
+                .addGap(32, 32, 32)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(jButton2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(153, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -147,49 +153,56 @@ public class AjoutPersonnes extends javax.swing.JPanel {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-         actualiser();       
+  
         /*Reste a mettre l'id salon dynamique*/
         String titreSalon = jComboBoxSalon.getSelectedItem().toString(); 
-        ConnexionBDD cbddd = new ConnexionBDD();        
-        String recupIdSalon = cbddd.getIdSalon(titreSalon);
+        String login = jComboBox1.getSelectedItem().toString(); 
+        ConnexionBDD cbddd3 = new ConnexionBDD();        
+        String recupIdSalon = cbddd3.getIdSalon(titreSalon);
         
-               
-        ConnexionBDD cbdd = new ConnexionBDD();
-        ResultSet rs = cbdd.listeMembre();
-        
-        try {
-            while (rs.next()) {
-                String login = rs.getString("login");
-                Personne p = new Personne(login);                
-                //jList3.add(p);
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(IfAppli.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
+        String requeteb = "INSERT INTO Acceder(login,idSalon) VALUES ('"+login+"','"+recupIdSalon+"');";    
+        ConnexionBDD cbddb = new ConnexionBDD();
+        cbddb.insertSql(requeteb);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jComboBoxSalonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxSalonActionPerformed
+        jComboBox2.removeAllItems();
+        jComboBox1.removeAllItems();
+        actualiser();
+    }//GEN-LAST:event_jComboBoxSalonActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+            /*Suppression*/            
+            
+        String titreSalon = jComboBoxSalon.getSelectedItem().toString(); 
+        String login = jComboBox2.getSelectedItem().toString(); 
+        ConnexionBDD cbdda = new ConnexionBDD();
+        String idSalon=cbdda.getIdSalon(titreSalon);
+        String requetea = "DELETE FROM Acceder WHERE login='"+login+"' AND idSalon='"+idSalon+"';";
+        cbdda.insertSql(requetea);
+    }//GEN-LAST:event_jButton2ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JComboBox<String> jComboBoxSalon;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JList<String> jList2;
-    private javax.swing.JList<String> jList3;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane3;
     // End of variables declaration//GEN-END:variables
 
     public void actualiser() {
@@ -202,13 +215,32 @@ public class AjoutPersonnes extends javax.swing.JPanel {
             while (rs.next()) {
                 String login = rs.getString("login");
                 Personne p = new Personne(login);                
-                listModel.add(p);
+                jComboBox1.addItem(p.toString());
                 //jList3.
             }
         } catch (SQLException ex) {
             Logger.getLogger(IfAppli.class.getName()).log(Level.SEVERE, null, ex);
         }
         /*------------------------------------------*/
+        String titreSalon = jComboBoxSalon.getSelectedItem().toString();
+        
+        ConnexionBDD cbdddd = new ConnexionBDD();
+        String idSalon = cbdddd.getIdSalon(titreSalon);
+        
+        ConnexionBDD cbddd = new ConnexionBDD();
+        ResultSet rsd = cbddd.listeMembreSalon(idSalon);
+        
+        try {
+            while (rsd.next()) {
+                String login = rsd.getString("login");
+                Personne p = new Personne(login);                
+                jComboBox2.addItem(p.toString());
+                //jList3.
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(IfAppli.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
 }
 
 
@@ -230,4 +262,5 @@ public class AjoutPersonnes extends javax.swing.JPanel {
             Logger.getLogger(IfAppli.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
 }

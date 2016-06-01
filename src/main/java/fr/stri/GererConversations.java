@@ -55,16 +55,9 @@ public class GererConversations extends javax.swing.JPanel {
         });
 
         jButton2.setText("Supprimer le salon");
-        jButton2.setActionCommand("Supprimer le salon");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
-            }
-        });
-
-        input1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                input1ActionPerformed(evt);
             }
         });
 
@@ -108,7 +101,7 @@ public class GererConversations extends javax.swing.JPanel {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(28, 28, 28)
+                .addContainerGap()
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel2)
@@ -128,12 +121,16 @@ public class GererConversations extends javax.swing.JPanel {
                 .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton2)
-                .addContainerGap(39, Short.MAX_VALUE))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    
+/**
+ * Permet de créer le salon saisie par l'admin
+ * @param evt 
+ */
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
         //Récupère le contenu des champs
         String salon = input1.getText();
         String description = input2.getText();
@@ -161,6 +158,10 @@ public class GererConversations extends javax.swing.JPanel {
         actualiserListeSalon();
     }//GEN-LAST:event_jButton1ActionPerformed
 
+/**
+ * Permet de supprimer le salon selectionner par l'admin
+ * @param evt 
+ */
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         //Récupère le nom du salon
@@ -182,10 +183,6 @@ public class GererConversations extends javax.swing.JPanel {
         actualiserListeSalon();
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void input1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_input1ActionPerformed
-       
-    }//GEN-LAST:event_input1ActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField input1;
@@ -201,6 +198,9 @@ public class GererConversations extends javax.swing.JPanel {
     private javax.swing.JSeparator jSeparator1;
     // End of variables declaration//GEN-END:variables
 
+/**
+ * Actualise la liste des salons et les insère dans la jComboBox1 comme élément
+ */
     public void actualiserListeSalon() {
         Identification login = new Identification();
         String loginUse = login.log1.getLogin(); 

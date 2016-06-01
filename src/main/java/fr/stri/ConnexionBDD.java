@@ -81,6 +81,25 @@ public class ConnexionBDD {
         return rs;
      }
      
+          public ResultSet listeMembreSalon(String idsalon) {
+        
+        try {
+            Connection conn = connexion();
+            Statement stmt = null;
+
+            stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT login FROM ACCEDER WHERE idsalon="+idsalon+" ORDER BY login ASC;");
+            conn.close();    //BUGED ?
+            return rs;
+
+        } catch (SQLException ex) {
+            Logger.getLogger(ConnexionBDD.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        ResultSet rs = null;
+        return rs;
+     }
+     
+     
      public ResultSet listeSalon(String nomSalon) {
              
         try {    

@@ -52,18 +52,6 @@ public class Identification extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
-            }
-        });
-
-        jPasswordField1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jPasswordField1ActionPerformed(evt);
-            }
-        });
-
         jButton1.setText("Connexion");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -136,18 +124,14 @@ public class Identification extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /*Champ du Login*/
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
-        // TODO add your handling code here:
-        
-           //recuperation du login
-         
-         
-    }//GEN-LAST:event_jTextField1ActionPerformed
-/*Bouton d'envoi*/
+/**
+ * Recupère et test la combinaison login et mot de passe.
+ * Si connexion ok, alors ouvre le logiciel de discution avec le login associé
+ * Si connexion en tant qu'admin, ouvre la console admin
+ * Si connexion non ok, alors informe l'utilisateur que c'est incorect
+ * @param evt 
+ */
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        
         login = jTextField1.getText();
         mdp = jPasswordField1.getText(); //recuperation du mdp
         System.out.println(login + mdp);
@@ -180,12 +164,6 @@ public class Identification extends javax.swing.JFrame {
         return login;
     }
     
-    /*Champ du Mot de Passe*/
-    private void jPasswordField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordField1ActionPerformed
-        // TODO add your handling code here:
-        
-    }//GEN-LAST:event_jPasswordField1ActionPerformed
-
     /**
      * @param args the command line arguments
      */
