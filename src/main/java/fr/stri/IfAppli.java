@@ -376,6 +376,7 @@ public class IfAppli extends javax.swing.JFrame {
         String description = cbdd.descriptionSQL(selection);
         JOptionPane.showMessageDialog(taMsgSalon, description);
     }//GEN-LAST:event_mnuDescriptionMouseClicked
+
 /**
  * Selection de personnes dans la liste de personne pour créer un salon privé
  * @param evt 
@@ -388,10 +389,15 @@ public class IfAppli extends javax.swing.JFrame {
         
         if (evt.getClickCount() == 2 && !evt.isConsumed()) {
             evt.consume();
-            System.out.println(personSelect);
-            
             ConnexionBDD cbdd = new ConnexionBDD();
-            String salonPriveeExist = cbdd.idSalonPrivee(loginUse+personSelect);            
+            String statut = cbdd.isMembreCo(personSelect);
+            Component jButton1 = null;
+            
+            if ("t".equals(statut))
+                statut="connecté";
+            else
+                statut="absent ou non connecté";            
+            JOptionPane.showMessageDialog(jButton1, "L'utilisateur "+personSelect+" est " + statut+".");
         }        
     }//GEN-LAST:event_lstPersonnesMouseClicked
 

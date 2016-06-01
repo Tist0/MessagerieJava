@@ -357,4 +357,33 @@ public class ConnexionBDD {
             return null;
         }    
     }
+    
+    /**
+     * Vérifie si le membre passé en paramètre est connecté
+     * @param user
+     * @return 
+     */
+    public String isMembreCo(String user)
+        {        
+        try {
+            Connection conn = connexion();
+            Statement stmt = null;
+            stmt = conn.createStatement();
+            String q = "select statut FROM USERS WHERE login = '"+user+"';";
+
+            ResultSet rs = stmt.executeQuery(q);
+            conn.close(); 
+            
+            String statut = "";
+            
+            while (rs.next()) {
+            statut = rs.getString("statut");          
+             }            
+            return statut;
+        } 
+        catch (SQLException ex) {
+            Logger.getLogger(ConnexionBDD.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }    
+    }
 }
