@@ -23,8 +23,6 @@ public class AjoutPersonnes extends javax.swing.JPanel {
     public AjoutPersonnes() {
         initComponents();
         
-        //listModel = new MyAbstractList();
-        //JList jList3 = new JList(listModel);
         actualiserListeSalon();
         jComboBox2.removeAllItems();
         jComboBox1.removeAllItems();
@@ -158,11 +156,11 @@ public class AjoutPersonnes extends javax.swing.JPanel {
                 .addGap(0, 0, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
-
+/**
+ * Ajoute un utilisateur à un salon
+ * @param evt 
+ */
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-  
-        /*Reste a mettre l'id salon dynamique*/
         String titreSalon = jComboBoxSalon.getSelectedItem().toString(); 
         String login = jComboBox1.getSelectedItem().toString(); 
         ConnexionBDD cbddd3 = new ConnexionBDD();        
@@ -173,12 +171,20 @@ public class AjoutPersonnes extends javax.swing.JPanel {
         cbddb.insertSql(requeteb);
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    /**
+     * Actualise la liste des salons lorsque on la développe
+     * @param evt 
+     */
     private void jComboBoxSalonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxSalonActionPerformed
         jComboBox2.removeAllItems();
         jComboBox1.removeAllItems();
         actualiser();
     }//GEN-LAST:event_jComboBoxSalonActionPerformed
 
+    /**
+     * Retire un utilisateur d'un salon
+     * @param evt 
+     */
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
             /*Suppression*/            
             
@@ -205,6 +211,10 @@ public class AjoutPersonnes extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 
+    /**
+     * Actualise la liste des personnes
+     * Actualise les personnes d'un salon en fonction du salon selectionné
+     */
     public void actualiser() {
      /*Clear/Reset avant d'actualiser*/    
         /*------------------------------------------*/        
@@ -216,7 +226,6 @@ public class AjoutPersonnes extends javax.swing.JPanel {
                 String login = rs.getString("login");
                 Personne p = new Personne(login);                
                 jComboBox1.addItem(p.toString());
-                //jList3.
             }
         } catch (SQLException ex) {
             Logger.getLogger(IfAppli.class.getName()).log(Level.SEVERE, null, ex);
@@ -235,16 +244,15 @@ public class AjoutPersonnes extends javax.swing.JPanel {
                 String login = rsd.getString("login");
                 Personne p = new Personne(login);                
                 jComboBox2.addItem(p.toString());
-                //jList3.
             }
         } catch (SQLException ex) {
             Logger.getLogger(IfAppli.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
+        }      
 }
 
-
-
+/**
+ * Actualise la liste des salons dans jComboBoxSalon
+ */
     public void actualiserListeSalon() {
         Identification login = new Identification();
         String loginUse = login.log1.getLogin(); 
@@ -262,5 +270,4 @@ public class AjoutPersonnes extends javax.swing.JPanel {
             Logger.getLogger(IfAppli.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
 }

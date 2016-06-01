@@ -6,7 +6,7 @@
 package fr.stri;
 
 /**
- *
+ * Permet de transferer le login depuis Identification.java vers IfAppli.java
  * @author Firtorios
  */
 class Login {

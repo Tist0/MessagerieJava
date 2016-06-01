@@ -20,7 +20,10 @@ import java.util.logging.Logger;
  */
 //Argument 
 public class ConnexionBDD {
-
+/**
+ * Etablit la connexion avec la BDD
+ * @return 
+ */
     public Connection connexion() {
         Connection conn = null;
         try {
@@ -40,29 +43,11 @@ public class ConnexionBDD {
         }
         return conn;
     }
-
-    public void test() {
-        try {
-            Connection conn = connexion();
-            Statement stmt = null;
-
-            stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT * FROM Users;");
-            conn.close();
-            while (rs.next()) {
-
-                String login = rs.getString("login");
-                String mdp = rs.getString("mdp");
-
-                System.out.println("login = " + login);
-                System.out.println("mdp = " + mdp);
-            }
-
-        } catch (SQLException ex) {
-            Logger.getLogger(ConnexionBDD.class.getName()).log(Level.SEVERE, null, ex);
-        }  
-    }
     
+    /**
+     * Retourne la liste des utilisateurs (format ResultSet)
+     * @return 
+     */
      public ResultSet listeMembre() {
         
         try {
@@ -80,8 +65,14 @@ public class ConnexionBDD {
         ResultSet rs = null;
         return rs;
      }
+    
+     /**
+      * Retourne les membres du salon passé en paramètre (format ResultSet)
+      * @param idsalon
+      * @return 
+      */
      
-          public ResultSet listeMembreSalon(String idsalon) {
+    public ResultSet listeMembreSalon(String idsalon) {
         
         try {
             Connection conn = connexion();
@@ -99,8 +90,12 @@ public class ConnexionBDD {
         return rs;
      }
      
-     
-     public ResultSet listeSalon(String nomSalon) {
+     /**
+      * Retourne la liste des salons auxquels l'utilisateur (param login) a accès (format ResultSet)
+      * @param login
+      * @return 
+      */
+     public ResultSet listeSalon(String login) {
              
         try {    
             Connection conn = connexion();
@@ -110,21 +105,23 @@ public class ConnexionBDD {
             ResultSet rs; 
             String q = "SELECT S.nom_salon FROM SALON AS S, Users AS U, Acceder AS A \n" +
 "	WHERE S.idsalon=A.idsalon AND U.login = A.login AND U.login='";
-            q = q.concat(nomSalon);
+            q = q.concat(login);
             q = q.concat("';");
             rs = stmt.executeQuery(q);   
             conn.close();    //BUGED ?
-            return rs;
-            
+            return rs;           
         } catch (SQLException ex) {
             Logger.getLogger(ConnexionBDD.class.getName()).log(Level.SEVERE, null, ex);
         }  
-
+        
         ResultSet rs = null;
         return rs;
      }
      
-   
+/**
+ * Execute la requete d'insertion passé en paramètre
+ * @param requete 
+ */
     public void insertSql(String requete) {
 
         try {
@@ -141,13 +138,14 @@ public class ConnexionBDD {
         }
            
         }
-        /**
-         * Permet d'afficher l'historique des messages
-         * @param numSalon
-         * @return 
-         * @throws SQLException 
-         */
-        public ResultSet recupHistoriqueSQL(String numSalon) throws SQLException{               
+    
+/**
+ * Permet d'afficher l'historique des messages
+ * @param numSalon
+ * @return 
+ * @throws SQLException 
+ */
+    public ResultSet recupHistoriqueSQL(String numSalon) throws SQLException{               
         Connection conn = connexion();
             Statement stmt = null;
             String msg = null;
@@ -166,7 +164,12 @@ public class ConnexionBDD {
             
         }
         
-        public String descriptionSQL(String nomSalon)
+    /**
+     * Retourne la description du salon
+     * @param nomSalon
+     * @return 
+     */
+    public String descriptionSQL(String nomSalon)
         {
             String descri = null;        
         try {
@@ -176,27 +179,26 @@ public class ConnexionBDD {
             String q = "SELECT description_salon FROM Salon Where nom_salon='";
             q = q.concat(nomSalon);
             q = q.concat("';");
-           // System.out.println(q);
             ResultSet rs = stmt.executeQuery(q);
             
              while (rs.next()) {
-            descri = rs.getString("description_salon");
-            //System.out.println(descri);
-            
+            descri = rs.getString("description_salon");          
              }
-                 conn.close();    //BUGED ?    
-            return descri;
-            
+            conn.close();   
+            return descri;            
         } 
         catch (SQLException ex) {
             Logger.getLogger(ConnexionBDD.class.getName()).log(Level.SEVERE, null, ex);
             return null;
         }
+    }
         
-        }
-        
-        
-        public String getIdSalon(String nomSalon)
+/**
+ * Renvoie l'id du salon dont le nom est passé en paramètre
+ * @param nomSalon
+ * @return 
+ */        
+    public String getIdSalon(String nomSalon)
         {
             String idSalon = null;        
         try {
@@ -224,12 +226,12 @@ public class ConnexionBDD {
         }
         
         }
-        
-        
-        
-        
-        
-        
+
+/**
+ * 
+ * @param nomSalon
+ * @return 
+ */
         public String idSalonPrivee(String nomSalon)
         {
             String idSalon = null;        
@@ -240,24 +242,19 @@ public class ConnexionBDD {
             String q = "SELECT id_salon FROM Salon Where nom_salon='";
             q = q.concat(nomSalon);
             q = q.concat("';");
-           // System.out.println(q);
             ResultSet rs = stmt.executeQuery(q);
             
-             while (rs.next()) {
-            idSalon = rs.getString("id_salon");
-            //System.out.println(descri);
-            
+            while (rs.next()) {
+            idSalon = rs.getString("id_salon");         
              }
-                 conn.close();    //BUGED ?    
+            conn.close();   
             return idSalon;
-            
         } 
         catch (SQLException ex) {
             Logger.getLogger(ConnexionBDD.class.getName()).log(Level.SEVERE, null, ex);
             return null;
-        }
-        
-        } 
+        }        
+    } 
         
        /* public String SalonPrivee(String nomSalon)
         {
@@ -291,8 +288,13 @@ public class ConnexionBDD {
         return SalonPriveeExist;
         } */
         
-        
-        public String identificationSQL(String login,String mdp)
+/**
+ * Renvoie si l'identification est ok. Prend le login et le mdp en paramètre
+ * @param login
+ * @param mdp
+ * @return 
+ */
+    public String identificationSQL(String login,String mdp)
         {
          String result = "Login incorect";          
         try {
@@ -302,7 +304,6 @@ public class ConnexionBDD {
             String q = "SELECT login,mdp FROM Users Where login ='";
             q = q.concat(login);
             q = q.concat("';");
-           // System.out.println(q);
             ResultSet rs = stmt.executeQuery(q);
             
              while (rs.next()) {
@@ -316,33 +317,28 @@ public class ConnexionBDD {
                          {
                              result ="mot de passe Incorect";
                          }
-                     
                      }
                 else
                     {
                         result ="Login incorect";
                     }
-                
-            
-            
              }
-              conn.close();    //BUGED ?
-            return result;
-            
+            conn.close();
+            return result;         
         } 
         catch (SQLException ex) {
             Logger.getLogger(ConnexionBDD.class.getName()).log(Level.SEVERE, null, ex);
             return null;
-        }
-        
-        }
-        
-     /* ####*/
-        
-                
-        public ResultSet getMembreCoSalon(String nomSalon)
-        {
-                   
+        }    
+    }
+              
+    /**
+     * Renvoie les utilisateurs connecté au salon
+     * @param nomSalon
+     * @return 
+     */            
+    public ResultSet getMembreCoSalon(String nomSalon)
+        {        
         try {
             Connection conn = connexion();
             Statement stmt = null;
@@ -350,25 +346,15 @@ public class ConnexionBDD {
             String q = "select s.nom_salon,u.login from salon as s, users as u,acceder as a where s.idsalon=a.idsalon AND u.login=a.login AND  u.statut='t'  AND s.nom_salon='";
             q = q.concat(nomSalon);
             q = q.concat("';");
-            
-           // System.out.println(q);
+
             ResultSet rs = stmt.executeQuery(q);
-            
-             
-                 conn.close();    //BUGED ?    
+
+            conn.close(); 
             return rs;
-            
         } 
         catch (SQLException ex) {
             Logger.getLogger(ConnexionBDD.class.getName()).log(Level.SEVERE, null, ex);
             return null;
-        }
-        
-        }
-
-          
-        
-        
-        
-        
+        }    
+    }
 }

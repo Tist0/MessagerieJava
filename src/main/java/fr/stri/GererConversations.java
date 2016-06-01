@@ -12,7 +12,7 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author florian b
+ * @author pascal b
  */
 public class GererConversations extends javax.swing.JPanel {
 
