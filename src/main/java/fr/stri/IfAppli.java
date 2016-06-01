@@ -74,7 +74,6 @@ public class IfAppli extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
         mnuDescription = new javax.swing.JMenu();
         mnuMembres = new javax.swing.JMenu();
-        mnuGestion = new javax.swing.JMenu();
         jComboBox1 = new javax.swing.JComboBox();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -215,14 +214,6 @@ public class IfAppli extends javax.swing.JFrame {
         });
         jMenuBar1.add(mnuMembres);
 
-        mnuGestion.setText("Gestion du salon");
-        mnuGestion.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                mnuGestionMouseClicked(evt);
-            }
-        });
-        jMenuBar1.add(mnuGestion);
-
         jInternalFrame1.setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout jInternalFrame1Layout = new javax.swing.GroupLayout(jInternalFrame1.getContentPane());
@@ -242,7 +233,7 @@ public class IfAppli extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 352, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(tfSendMessage, javax.swing.GroupLayout.DEFAULT_SIZE, 48, Short.MAX_VALUE)
+                .addComponent(tfSendMessage, javax.swing.GroupLayout.DEFAULT_SIZE, 51, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -459,10 +450,6 @@ public class IfAppli extends javax.swing.JFrame {
               
     }//GEN-LAST:event_lstPersonnesAncestorAdded
 
-    private void mnuGestionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mnuGestionMouseClicked
-        gestionAdmin.main(login);
-    }//GEN-LAST:event_mnuGestionMouseClicked
-
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
         statutAbsent();        // TODO add your handling code here:
     }//GEN-LAST:event_formWindowClosed
@@ -528,7 +515,6 @@ public class IfAppli extends javax.swing.JFrame {
     private javax.swing.JLabel lblPseudo;
     private javax.swing.JList lstPersonnes;
     private javax.swing.JMenu mnuDescription;
-    private javax.swing.JMenu mnuGestion;
     private javax.swing.JMenu mnuMembres;
     private javax.swing.JTextArea taMsgSalon;
     private javax.swing.JTextField tfSendMessage;

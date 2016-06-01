@@ -154,9 +154,17 @@ public class Identification extends javax.swing.JFrame {
         ConnexionBDD cbdd = new ConnexionBDD();
         
         String result = cbdd.identificationSQL(login,mdp);
+        System.out.println(result);
        
        if (result.equals("ok")){
-           IfAppli.main(login);
+           if ("admin".equals(login)){
+               gestionAdmin.main(login);
+           }
+           
+           else{
+               IfAppli.main(login);
+           }    
+           
            this.log1.setLogin(login);
            dispose();
        }
